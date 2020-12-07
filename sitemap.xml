@@ -2,91 +2,91 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://example.com/posts/e1cc05/</loc>
+    <loc>https://tingqiao.github.io/posts/e1cc05/</loc>
     
     <lastmod>2020-12-05</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/posts/5f68c470/</loc>
+    <loc>https://tingqiao.github.io/posts/5f68c470/</loc>
     
     <lastmod>2020-12-05</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/posts/b6184c34/</loc>
+    <loc>https://tingqiao.github.io/posts/b6184c34/</loc>
     
     <lastmod>2020-12-05</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/posts/e54d0ad3/</loc>
+    <loc>https://tingqiao.github.io/posts/e54d0ad3/</loc>
     
     <lastmod>2020-12-04</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/posts/96a20122/</loc>
+    <loc>https://tingqiao.github.io/posts/96a20122/</loc>
     
     <lastmod>2020-12-04</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/posts/e003e15b/</loc>
+    <loc>https://tingqiao.github.io/posts/e003e15b/</loc>
     
     <lastmod>2020-12-03</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/posts/4883b84c/</loc>
+    <loc>https://tingqiao.github.io/posts/4883b84c/</loc>
     
     <lastmod>2020-12-02</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/posts/4cda64e7/</loc>
+    <loc>https://tingqiao.github.io/posts/4cda64e7/</loc>
     
     <lastmod>2020-12-01</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/posts/4a17b156/</loc>
+    <loc>https://tingqiao.github.io/posts/4a17b156/</loc>
     
     <lastmod>2020-12-01</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/posts/8406797e/</loc>
+    <loc>https://tingqiao.github.io/posts/8406797e/</loc>
     
     <lastmod>2020-11-30</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/tags/index.html</loc>
+    <loc>https://tingqiao.github.io/tags/index.html</loc>
     
     <lastmod>2020-11-27</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/categories/index.html</loc>
+    <loc>https://tingqiao.github.io/categories/index.html</loc>
     
     <lastmod>2020-11-27</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/about/index.html</loc>
+    <loc>https://tingqiao.github.io/about/index.html</loc>
     
     <lastmod>2020-11-27</lastmod>
     
@@ -94,7 +94,7 @@
   
 
   <url>
-    <loc>http://example.com/</loc>
+    <loc>https://tingqiao.github.io/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -102,35 +102,35 @@
 
   
   <url>
-    <loc>http://example.com/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/</loc>
+    <loc>https://tingqiao.github.io/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/fastjson/</loc>
+    <loc>https://tingqiao.github.io/tags/fastjson/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/Hexo/</loc>
+    <loc>https://tingqiao.github.io/tags/Hexo/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/mimikatz/</loc>
+    <loc>https://tingqiao.github.io/tags/mimikatz/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/tip/</loc>
+    <loc>https://tingqiao.github.io/tags/tip/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -139,49 +139,49 @@
 
   
   <url>
-    <loc>http://example.com/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/</loc>
+    <loc>https://tingqiao.github.io/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/vuln/</loc>
+    <loc>https://tingqiao.github.io/categories/vuln/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E5%85%8D%E6%9D%80/</loc>
+    <loc>https://tingqiao.github.io/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E5%85%8D%E6%9D%80/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/Hexo/</loc>
+    <loc>https://tingqiao.github.io/categories/Hexo/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/mimikatz/</loc>
+    <loc>https://tingqiao.github.io/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/mimikatz/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</loc>
+    <loc>https://tingqiao.github.io/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E4%BB%A3%E7%90%86/</loc>
+    <loc>https://tingqiao.github.io/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E4%BB%A3%E7%90%86/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
