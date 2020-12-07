@@ -123,14 +123,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/tip/</loc>
+    <loc>http://example.com/tags/mimikatz/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/mimikatz/</loc>
+    <loc>http://example.com/tags/tip/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -167,14 +167,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</loc>
+    <loc>http://example.com/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/mimikatz/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/mimikatz/</loc>
+    <loc>http://example.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
