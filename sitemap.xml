@@ -143,6 +143,27 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://tingqiao.github.io/tags/SQL%E6%B3%A8%E5%85%A5/</loc>
+    <lastmod>2020-12-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tingqiao.github.io/tags/mysql%E6%B3%A8%E5%85%A5/</loc>
+    <lastmod>2020-12-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tingqiao.github.io/tags/web%E5%AE%89%E5%85%A8/</loc>
+    <lastmod>2020-12-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   
   <url>
@@ -189,6 +210,27 @@
   
   <url>
     <loc>https://tingqiao.github.io/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E4%BB%A3%E7%90%86/</loc>
+    <lastmod>2020-12-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tingqiao.github.io/categories/SQL%E6%B3%A8%E5%85%A5/</loc>
+    <lastmod>2020-12-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tingqiao.github.io/categories/SQL%E6%B3%A8%E5%85%A5/mysql%E6%B3%A8%E5%85%A5/</loc>
+    <lastmod>2020-12-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tingqiao.github.io/categories/SQL%E6%B3%A8%E5%85%A5/mysql%E6%B3%A8%E5%85%A5/web%E5%AE%89%E5%85%A8/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
