@@ -2,14 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://tingqiao.github.io/posts/5a68b32e/</loc>
+    <loc>https://tingqiao.github.io/posts/3e24b757/</loc>
     
     <lastmod>2020-12-15</lastmod>
     
   </url>
   
   <url>
-    <loc>https://tingqiao.github.io/posts/3e24b757/</loc>
+    <loc>https://tingqiao.github.io/posts/5a68b32e/</loc>
     
     <lastmod>2020-12-15</lastmod>
     
@@ -251,13 +251,6 @@
   </url>
   
   <url>
-    <loc>https://tingqiao.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/</loc>
-    <lastmod>2020-12-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://tingqiao.github.io/categories/web%E5%AE%89%E5%85%A8/</loc>
     <lastmod>2020-12-15</lastmod>
     <changefreq>daily</changefreq>
@@ -272,14 +265,21 @@
   </url>
   
   <url>
-    <loc>https://tingqiao.github.io/categories/web%E5%AE%89%E5%85%A8/php/</loc>
+    <loc>https://tingqiao.github.io/categories/web%E5%AE%89%E5%85%A8/SQL%E6%B3%A8%E5%85%A5/mysql%E6%B3%A8%E5%85%A5/</loc>
     <lastmod>2020-12-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://tingqiao.github.io/categories/web%E5%AE%89%E5%85%A8/SQL%E6%B3%A8%E5%85%A5/mysql%E6%B3%A8%E5%85%A5/</loc>
+    <loc>https://tingqiao.github.io/categories/web%E5%AE%89%E5%85%A8/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/</loc>
+    <lastmod>2020-12-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tingqiao.github.io/categories/web%E5%AE%89%E5%85%A8/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/php/</loc>
     <lastmod>2020-12-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
