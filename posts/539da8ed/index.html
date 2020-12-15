@@ -23,24 +23,26 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"tingqiao.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="C++加载shellcode123456789101112131415#include &quot;stdafx.h&quot;#include &quot;Windows.h&quot;#pragma comment(linker,&quot;&#x2F;subsystem:\&quot;windows\&quot; &#x2F;entry:\&quot;mainCRTStartup\&quot;&quot;) &#x2F;">
+<meta name="description" content="PHP代码审计入门-BlueCMS网上众多代码审计入门文章都是BlueCMS，于是从审计BlueCMS开始学习 环境准备Mysql+php 安装 http:&#x2F;&#x2F;127.0.0.1&#x2F;bluecms&#x2F;install&#x2F;  目录结构    目录 功能    admin 管理员后台   api API接口   data    images    include    install 安装文件   js js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="免杀-XOR混淆免杀">
-<meta property="og:url" content="https://tingqiao.github.io/posts/5f68c470/index.html">
+<meta property="og:title" content="PHP代码审计入门-BlueCMS">
+<meta property="og:url" content="https://tingqiao.github.io/posts/539da8ed/index.html">
 <meta property="og:site_name" content="TingQiao&#39;s blog">
-<meta property="og:description" content="C++加载shellcode123456789101112131415#include &quot;stdafx.h&quot;#include &quot;Windows.h&quot;#pragma comment(linker,&quot;&#x2F;subsystem:\&quot;windows\&quot; &#x2F;entry:\&quot;mainCRTStartup\&quot;&quot;) &#x2F;">
+<meta property="og:description" content="PHP代码审计入门-BlueCMS网上众多代码审计入门文章都是BlueCMS，于是从审计BlueCMS开始学习 环境准备Mysql+php 安装 http:&#x2F;&#x2F;127.0.0.1&#x2F;bluecms&#x2F;install&#x2F;  目录结构    目录 功能    admin 管理员后台   api API接口   data    images    include    install 安装文件   js js">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tingqiao.github.io/posts/5f68c470/res/2020-12-04-10-32-54.png">
-<meta property="og:image" content="https://tingqiao.github.io/posts/5f68c470/res/2020-12-04-20-22-46.png">
-<meta property="article:published_time" content="2020-12-04T02:31:20.000Z">
-<meta property="article:modified_time" content="2020-12-05T03:50:11.678Z">
+<meta property="og:image" content="https://tingqiao.github.io/posts/539da8ed/res/!%5Bimage%5D(D24C6D0276654C70AB097326E891E3F1).png">
+<meta property="og:image" content="https://tingqiao.github.io/posts/539da8ed/res/2020-12-15-20-06-03.png">
+<meta property="og:image" content="https://tingqiao.github.io/posts/539da8ed/res/2020-12-15-20-06-48.png">
+<meta property="article:published_time" content="2020-12-15T12:03:22.000Z">
+<meta property="article:modified_time" content="2020-12-15T12:07:08.322Z">
 <meta property="article:author" content="听桥">
-<meta property="article:tag" content="内网渗透">
+<meta property="article:tag" content="代码审计">
+<meta property="article:tag" content="php">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tingqiao.github.io/posts/5f68c470/res/2020-12-04-10-32-54.png">
+<meta name="twitter:image" content="https://tingqiao.github.io/posts/539da8ed/res/!%5Bimage%5D(D24C6D0276654C70AB097326E891E3F1).png">
 
 
-<link rel="canonical" href="https://tingqiao.github.io/posts/5f68c470/">
+<link rel="canonical" href="https://tingqiao.github.io/posts/539da8ed/">
 
 
 <script class="page-configurations">
@@ -52,7 +54,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>免杀-XOR混淆免杀 | TingQiao's blog</title>
+<title>PHP代码审计入门-BlueCMS | TingQiao's blog</title>
   
 
 
@@ -188,7 +190,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#C-%E5%8A%A0%E8%BD%BDshellcode"><span class="nav-number">1.</span> <span class="nav-text">C++加载shellcode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A9%E7%94%A8xor%E5%8A%A0%E5%AF%86shellcode%E5%85%8D%E6%9D%80"><span class="nav-number">2.</span> <span class="nav-text">利用xor加密shellcode免杀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%BE%E5%90%8D%E7%9A%84%E6%95%88%E6%9E%9C"><span class="nav-number">3.</span> <span class="nav-text">签名的效果</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%85%A5%E9%97%A8-BlueCMS"><span class="nav-number">1.</span> <span class="nav-text">PHP代码审计入门-BlueCMS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-number">1.1.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#index-php"><span class="nav-number">1.3.</span> <span class="nav-text">index.php</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#common-inc-php"><span class="nav-number">1.3.1.</span> <span class="nav-text">common.inc.php</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="nav-number">1.3.2.</span> <span class="nav-text">SQL注入</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ad-id-%E5%8F%82%E6%95%B0"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">ad_id 参数</span></a></li></ol></li></ol></li></ol></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -256,7 +258,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://tingqiao.github.io/posts/5f68c470/">
+    <link itemprop="mainEntityOfPage" href="https://tingqiao.github.io/posts/539da8ed/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -269,7 +271,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          免杀-XOR混淆免杀
+          PHP代码审计入门-BlueCMS
         </h1>
 
         <div class="post-meta-container">
@@ -279,27 +281,25 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2020-12-04 10:31:20" itemprop="dateCreated datePublished" datetime="2020-12-04T10:31:20+08:00">2020-12-04</time>
+      <time title="创建时间：2020-12-15 20:03:22 / 修改时间：20:07:08" itemprop="dateCreated datePublished" datetime="2020-12-15T20:03:22+08:00">2020-12-15</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-05 11:50:11" itemprop="dateModified" datetime="2020-12-05T11:50:11+08:00">2020-12-05</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">内网渗透</span></a>
+          <a href="/categories/web%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">web安全</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E5%85%8D%E6%9D%80/" itemprop="url" rel="index"><span itemprop="name">免杀</span></a>
+          <a href="/categories/web%E5%AE%89%E5%85%A8/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">代码审计</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/web%E5%AE%89%E5%85%A8/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/php/" itemprop="url" rel="index"><span itemprop="name">php</span></a>
         </span>
     </span>
 
@@ -320,11 +320,68 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="C-加载shellcode"><a href="#C-加载shellcode" class="headerlink" title="C++加载shellcode"></a>C++加载shellcode</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;stdafx.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;Windows.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> comment(linker,<span class="meta-string">&quot;/subsystem:\&quot;windows\&quot; /entry:\&quot;mainCRTStartup\&quot;&quot;</span>) <span class="comment">//后台运行无黑框</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span> </span>&#123;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> shellcode[] = <span class="string">&quot;shellcode&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> *exec = VirtualAlloc(<span class="number">0</span>, <span class="keyword">sizeof</span> shellcode, MEM_COMMIT, PAGE_EXECUTE_READWRITE);</span><br><span class="line">    <span class="built_in">memcpy</span>(exec, shellcode, <span class="keyword">sizeof</span> shellcode);</span><br><span class="line">    ((<span class="keyword">void</span>(*)())exec)();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="PHP代码审计入门-BlueCMS"><a href="#PHP代码审计入门-BlueCMS" class="headerlink" title="PHP代码审计入门-BlueCMS"></a>PHP代码审计入门-BlueCMS</h2><p>网上众多代码审计入门文章都是BlueCMS，于是从审计BlueCMS开始学习</p>
+<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><p>Mysql+php</p>
+<p>安装 <a target="_blank" rel="noopener" href="http://127.0.0.1/bluecms/install/">http://127.0.0.1/bluecms/install/</a></p>
+<p><img src="/posts/539da8ed/res/!%5Bimage%5D(D24C6D0276654C70AB097326E891E3F1).png" alt="1"></p>
+<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p><img src="/posts/539da8ed/res/2020-12-15-20-06-03.png" alt="2"></p>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>admin</td>
+<td>管理员后台</td>
+</tr>
+<tr>
+<td>api</td>
+<td>API接口</td>
+</tr>
+<tr>
+<td>data</td>
+<td></td>
+</tr>
+<tr>
+<td>images</td>
+<td></td>
+</tr>
+<tr>
+<td>include</td>
+<td></td>
+</tr>
+<tr>
+<td>install</td>
+<td>安装文件</td>
+</tr>
+<tr>
+<td>js</td>
+<td>js文件</td>
+</tr>
+<tr>
+<td>templates</td>
+<td></td>
+</tr>
+<tr>
+<td>uc_client</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="index-php"><a href="#index-php" class="headerlink" title="index.php"></a>index.php</h3><p>开头包含了include两个文件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require_once</span>(<span class="string">&#x27;include/common.inc.php&#x27;</span>);</span><br><span class="line"><span class="keyword">require_once</span>(BLUE_ROOT.<span class="string">&#x27;include/index.fun.php&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
-<h2 id="利用xor加密shellcode免杀"><a href="#利用xor加密shellcode免杀" class="headerlink" title="利用xor加密shellcode免杀"></a>利用xor加密shellcode免杀</h2><p>免杀效果：</p>
-<p><img src="/posts/5f68c470/res/2020-12-04-10-32-54.png" alt="xor"></p>
-<h2 id="签名的效果"><a href="#签名的效果" class="headerlink" title="签名的效果"></a>签名的效果</h2><p><img src="/posts/5f68c470/res/2020-12-04-20-22-46.png" alt="sign"></p>
+<h4 id="common-inc-php"><a href="#common-inc-php" class="headerlink" title="common.inc.php"></a>common.inc.php</h4><p>同样包含了许多文件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">session_cache_limiter(<span class="string">&#x27;private, must-revalidate&#x27;</span>);</span><br><span class="line">session_start();</span><br><span class="line"><span class="keyword">require_once</span>(BLUE_ROOT.<span class="string">&#x27;data/config.php&#x27;</span>);</span><br><span class="line">define(<span class="string">&#x27;BLUE_PRE&#x27;</span>,<span class="variable">$pre</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">require_once</span> (BLUE_ROOT.<span class="string">&#x27;include/common.fun.php&#x27;</span>);</span><br><span class="line"><span class="keyword">require_once</span>(BLUE_ROOT.<span class="string">&#x27;include/cat.fun.php&#x27;</span>);</span><br><span class="line"><span class="keyword">require_once</span>(BLUE_ROOT.<span class="string">&#x27;include/cache.fun.php&#x27;</span>);</span><br><span class="line"><span class="keyword">require_once</span>(BLUE_ROOT.<span class="string">&#x27;include/user.fun.php&#x27;</span>);</span><br><span class="line"><span class="keyword">require_once</span>(BLUE_ROOT.<span class="string">&#x27;include/index.fun.php&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>有自定义的防护检测 magic_quotes_gpc 是否开启如果没有开启则调用common.fun.php的deep_addslashes对用户传入的参数进行addslashes()转义防护</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(!get_magic_quotes_gpc())</span><br><span class="line">&#123;</span><br><span class="line">    <span class="variable">$_POST</span> = deep_addslashes(<span class="variable">$_POST</span>);</span><br><span class="line">    <span class="variable">$_GET</span> = deep_addslashes(<span class="variable">$_GET</span>);</span><br><span class="line">    <span class="variable">$_COOKIES</span> = deep_addslashes(<span class="variable">$_COOKIES</span>);</span><br><span class="line">    <span class="variable">$_REQUEST</span> = deep_addslashes(<span class="variable">$_REQUEST</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h4><h5 id="ad-id-参数"><a href="#ad-id-参数" class="headerlink" title="ad_id 参数"></a>ad_id 参数</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ad_id</span> = !<span class="keyword">empty</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;ad_id&#x27;</span>]) ? trim(<span class="variable">$_GET</span>[<span class="string">&#x27;ad_id&#x27;</span>]) : <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">empty</span>(<span class="variable">$ad_id</span>))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;Error!&#x27;</span>;</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$ad</span> = <span class="variable">$db</span>-&gt;getone(<span class="string">&quot;SELECT * FROM &quot;</span>.table(<span class="string">&#x27;ad&#x27;</span>).<span class="string">&quot; WHERE ad_id =&quot;</span>.<span class="variable">$ad_id</span>);</span><br></pre></td></tr></table></figure>
+
+<p>当参数的值传入到后台sql语句没有’’会出现不需要单引号（’）或双引号（”）闭合，导致SQL注入漏洞。</p>
+<p><img src="/posts/539da8ed/res/2020-12-15-20-06-48.png" alt="img"></p>
 
     </div>
 
@@ -334,21 +391,19 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" rel="tag"># 内网渗透</a>
+              <a href="/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" rel="tag"># 代码审计</a>
+              <a href="/tags/php/" rel="tag"># php</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/e54d0ad3/" rel="prev" title="内网渗透-端口转发与代理总结">
-                  <i class="fa fa-chevron-left"></i> 内网渗透-端口转发与代理总结
+                <a href="/posts/3e24b757/" rel="prev" title="PHP代码审计-PHP基础（持续ing...）">
+                  <i class="fa fa-chevron-left"></i> PHP代码审计-PHP基础（持续ing...）
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/96a20122/" rel="next" title="go-shellcode免杀">
-                  go-shellcode免杀 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
