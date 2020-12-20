@@ -23,28 +23,26 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"tingqiao.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="Seay代码审计工具自动审计发现文件上传函数">
+<meta name="description" content="PHP代码审计入门-yxtcmf6.1yxtcmf6.1基于thinkphp3.2.3 思路路由 data\conf\route.php123456789101112131415161718192021222324&lt;?php	return array (  &amp;#x27;login$&amp;#x27; &#x3D;&gt; &amp;#x27;user&#x2F;login&#x2F;index&amp;#x27;,  &amp;#x27;regist">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PHP代码审计入门-稻草人CMS">
-<meta property="og:url" content="https://tingqiao.github.io/posts/47cdd4d9/index.html">
+<meta property="og:title" content="PHP代码审计入门-yxtcmf6.1">
+<meta property="og:url" content="https://tingqiao.github.io/posts/4bb8d7e9/index.html">
 <meta property="og:site_name" content="TingQiao&#39;s blog">
-<meta property="og:description" content="Seay代码审计工具自动审计发现文件上传函数">
+<meta property="og:description" content="PHP代码审计入门-yxtcmf6.1yxtcmf6.1基于thinkphp3.2.3 思路路由 data\conf\route.php123456789101112131415161718192021222324&lt;?php	return array (  &amp;#x27;login$&amp;#x27; &#x3D;&gt; &amp;#x27;user&#x2F;login&#x2F;index&amp;#x27;,  &amp;#x27;regist">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tingqiao.github.io/posts/47cdd4d9/res/2020-12-18-11-29-11.png">
-<meta property="og:image" content="https://tingqiao.github.io/posts/47cdd4d9/res/2020-12-18-11-44-24.png">
-<meta property="og:image" content="https://tingqiao.github.io/posts/47cdd4d9/res/2020-12-18-11-49-10.png">
-<meta property="og:image" content="https://tingqiao.github.io/posts/47cdd4d9/res/2020-12-18-11-49-33.png">
-<meta property="og:image" content="https://tingqiao.github.io/posts/47cdd4d9/res/2020-12-18-13-32-22.png">
-<meta property="article:published_time" content="2020-12-18T03:28:10.000Z">
-<meta property="article:modified_time" content="2020-12-18T05:43:29.945Z">
+<meta property="og:image" content="https://tingqiao.github.io/posts/4bb8d7e9/res/2020-12-20-13-52-24.png">
+<meta property="og:image" content="https://tingqiao.github.io/posts/4bb8d7e9/res/2020-12-20-14-56-59.png">
+<meta property="og:image" content="https://tingqiao.github.io/posts/4bb8d7e9/res/2020-12-20-14-58-47.png">
+<meta property="article:published_time" content="2020-12-19T12:23:11.000Z">
+<meta property="article:modified_time" content="2020-12-20T07:11:10.158Z">
 <meta property="article:author" content="听桥">
 <meta property="article:tag" content="代码审计">
 <meta property="article:tag" content="php">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tingqiao.github.io/posts/47cdd4d9/res/2020-12-18-11-29-11.png">
+<meta name="twitter:image" content="https://tingqiao.github.io/posts/4bb8d7e9/res/2020-12-20-13-52-24.png">
 
 
-<link rel="canonical" href="https://tingqiao.github.io/posts/47cdd4d9/">
+<link rel="canonical" href="https://tingqiao.github.io/posts/4bb8d7e9/">
 
 
 <script class="page-configurations">
@@ -56,7 +54,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>PHP代码审计入门-稻草人CMS | TingQiao's blog</title>
+<title>PHP代码审计入门-yxtcmf6.1 | TingQiao's blog</title>
   
 
 
@@ -192,7 +190,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Seay%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%B7%A5%E5%85%B7"><span class="nav-number">1.</span> <span class="nav-text">Seay代码审计工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="nav-number">2.</span> <span class="nav-text">任意文件上传</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#class-upload-php"><span class="nav-number">2.1.</span> <span class="nav-text">class.upload.php</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81"><span class="nav-number">2.2.</span> <span class="nav-text">漏洞验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XSS"><span class="nav-number">3.</span> <span class="nav-text">XSS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#product-list-php"><span class="nav-number">3.1.</span> <span class="nav-text">product_list.php</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%85%A5%E9%97%A8-yxtcmf6-1"><span class="nav-number">1.</span> <span class="nav-text">PHP代码审计入门-yxtcmf6.1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.</span> <span class="nav-text">思路</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1-data-conf-route-php"><span class="nav-number">1.1.1.</span> <span class="nav-text">路由 data\conf\route.php</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#thinkphp-3-2-3%E5%8E%86%E5%8F%B2%E6%BC%8F%E6%B4%9E"><span class="nav-number">1.1.2.</span> <span class="nav-text">thinkphp 3.2.3历史漏洞</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sql%E6%B3%A8%E5%85%A5"><span class="nav-number">1.2.</span> <span class="nav-text">sql注入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#application-Admin-Controller-AdController-class-php"><span class="nav-number">1.2.1.</span> <span class="nav-text">application\Admin\Controller\AdController.class.php</span></a></li></ol></li></ol></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -260,7 +258,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://tingqiao.github.io/posts/47cdd4d9/">
+    <link itemprop="mainEntityOfPage" href="https://tingqiao.github.io/posts/4bb8d7e9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -273,7 +271,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          PHP代码审计入门-稻草人CMS
+          PHP代码审计入门-yxtcmf6.1
         </h1>
 
         <div class="post-meta-container">
@@ -283,10 +281,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-12-18 11:28:10 / 修改时间：13:43:29" itemprop="dateCreated datePublished" datetime="2020-12-18T11:28:10+08:00">2020-12-18</time>
+      <time title="创建时间：2020-12-19 20:23:11" itemprop="dateCreated datePublished" datetime="2020-12-19T20:23:11+08:00">2020-12-19</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-20 15:11:10" itemprop="dateModified" datetime="2020-12-20T15:11:10+08:00">2020-12-20</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -322,20 +326,19 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="Seay代码审计工具"><a href="#Seay代码审计工具" class="headerlink" title="Seay代码审计工具"></a>Seay代码审计工具</h2><p>自动审计发现文件上传函数</p>
-<p><img src="/posts/47cdd4d9/res/2020-12-18-11-29-11.png" alt="upload"></p>
-<a id="more"></a>
+        <h2 id="PHP代码审计入门-yxtcmf6-1"><a href="#PHP代码审计入门-yxtcmf6-1" class="headerlink" title="PHP代码审计入门-yxtcmf6.1"></a>PHP代码审计入门-yxtcmf6.1</h2><p>yxtcmf6.1基于thinkphp3.2.3</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><h4 id="路由-data-conf-route-php"><a href="#路由-data-conf-route-php" class="headerlink" title="路由 data\conf\route.php"></a>路由 data\conf\route.php</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>	<span class="keyword">return</span> <span class="keyword">array</span> (</span><br><span class="line">  <span class="string">&#x27;login$&#x27;</span> =&gt; <span class="string">&#x27;user/login/index&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;register$&#x27;</span> =&gt; <span class="string">&#x27;user/register/index&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;forum$&#x27;</span> =&gt; <span class="string">&#x27;forum/plate/index&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;article$&#x27;</span> =&gt; <span class="string">&#x27;portal/index/article&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;livecourseinfo/:id\d&#x27;</span> =&gt; <span class="string">&#x27;course/course/livecourseinfo&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;tcenter$&#x27;</span> =&gt; <span class="string">&#x27;teacher/center/index&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;pcontent/:id&#x27;</span> =&gt; <span class="string">&#x27;portal/index/content&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;topic/:id&#x27;</span> =&gt; <span class="string">&#x27;forum/plate/topic&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;thread/:id&#x27;</span> =&gt; <span class="string">&#x27;forum/plate/thread&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;edittopic/:id&#x27;</span> =&gt; <span class="string">&#x27;forum/plate/edittopic&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;editplate/:id&#x27;</span> =&gt; <span class="string">&#x27;forum/plate/edit&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;coursecenter/:topid\d/:childid\d/:thirdid\d/:labelid&#x27;</span> =&gt; <span class="string">&#x27;course/course/coursecenter&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;livecourse$&#x27;</span> =&gt; <span class="string">&#x27;course/course/livecourse&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;livecenter/:topid\d/:childid\d/:thirdid\d/:labelid&#x27;</span> =&gt; <span class="string">&#x27;course/course/livecoursecenter&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;livecenter$&#x27;</span> =&gt; <span class="string">&#x27;course/course/livecoursecenter&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;coursecenter$&#x27;</span> =&gt; <span class="string">&#x27;course/course/coursecenter&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;ftfcourse/:topid\d/:childid\d/:thirdid\d/:labelid&#x27;</span> =&gt; <span class="string">&#x27;course/course/ftfcourse&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;ftfcourse$&#x27;</span> =&gt; <span class="string">&#x27;course/course/ftfcourse&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;teacher$&#x27;</span> =&gt; <span class="string">&#x27;teacher/teacher/index&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;article/termid/:termid&#x27;</span> =&gt; <span class="string">&#x27;portal/index/article&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;teacherinfo/:id\d&#x27;</span> =&gt; <span class="string">&#x27;teacher/teacher/about&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;courseinfo/:id\d&#x27;</span> =&gt; <span class="string">&#x27;course/course/courseinfo&#x27;</span>,</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 
-<h2 id="任意文件上传"><a href="#任意文件上传" class="headerlink" title="任意文件上传"></a>任意文件上传</h2><h3 id="class-upload-php"><a href="#class-upload-php" class="headerlink" title="class.upload.php"></a>class.upload.php</h3><p>只是使用验证content-type对文件类型做了校验，上传图片抓包修改后缀为php即可绕过。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">cls_upload</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$allow_files</span>; <span class="comment">//允许的文件类型</span></span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$max_file_size</span>; <span class="comment">//文件最大上传大小</span></span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$input_name</span>; <span class="comment">//上传框的name</span></span><br><span class="line">        </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 构造函数</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> string $input_name 上传文件框的名字</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"> <span class="variable">$input_name</span> </span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//初始化数据</span></span><br><span class="line">        <span class="keyword">$this</span>-&gt;input_name = <span class="variable">$input_name</span>;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;allow_files = <span class="keyword">array</span>(<span class="string">&#x27;image/jpg&#x27;</span>, <span class="string">&#x27;image/jpeg&#x27;</span>, <span class="string">&#x27;image/png&#x27;</span>, <span class="string">&#x27;image/pjpeg&#x27;</span>, <span class="string">&#x27;image/gif&#x27;</span>, <span class="string">&#x27;image/bmp&#x27;</span>, <span class="string">&#x27;image/x-png&#x27;</span>);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;max_file_size = <span class="number">5000000</span>;</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 设置允许上传的文件类型</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> array 允许的文件类型</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> true</span></span><br><span class="line"><span class="comment">     */</span>   </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">set_allow_files</span>(<span class="params"> <span class="variable">$allow_files</span> </span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;allow_files = <span class="variable">$allow_files</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>对应关系：</p>
+<p><img src="/posts/4bb8d7e9/res/2020-12-20-13-52-24.png" alt="img"></p>
+<h4 id="thinkphp-3-2-3历史漏洞"><a href="#thinkphp-3-2-3历史漏洞" class="headerlink" title="thinkphp 3.2.3历史漏洞"></a>thinkphp 3.2.3历史漏洞</h4><p>因为基于thinkphp 3.2.3开发，所以在使用官方的标准开发方式的前提下也会产生漏洞</p>
+<h3 id="sql注入"><a href="#sql注入" class="headerlink" title="sql注入"></a>sql注入</h3><p>通过历史漏洞，可知全局搜索使用where()链传入可能会导致SQL注入漏洞。全局搜索where( ：</p>
+<h4 id="application-Admin-Controller-AdController-class-php"><a href="#application-Admin-Controller-AdController-class-php" class="headerlink" title="application\Admin\Controller\AdController.class.php"></a>application\Admin\Controller\AdController.class.php</h4><p><img src="/posts/4bb8d7e9/res/2020-12-20-14-56-59.png" alt="1"></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">edit</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="variable">$id</span>=I(<span class="string">&quot;get.id&quot;</span>);</span><br><span class="line">    <span class="variable">$ad</span>=<span class="keyword">$this</span>-&gt;ad_model-&gt;where(<span class="string">&quot;ad_id=<span class="subst">$id</span>&quot;</span>)-&gt;find();</span><br><span class="line">    <span class="keyword">$this</span>-&gt;assign(<span class="variable">$ad</span>);</span><br><span class="line">    <span class="keyword">$this</span>-&gt;display();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="漏洞验证"><a href="#漏洞验证" class="headerlink" title="漏洞验证"></a>漏洞验证</h3><p>例如添加新闻位置：</p>
-<p><img src="/posts/47cdd4d9/res/2020-12-18-11-44-24.png" alt="1"></p>
-<p>上传图片再抓包修改后缀为php：<br><img src="/posts/47cdd4d9/res/2020-12-18-11-49-10.png" alt="2"></p>
-<p>成功：<br><img src="/posts/47cdd4d9/res/2020-12-18-11-49-33.png" alt="3"></p>
-<h2 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h2><h3 id="product-list-php"><a href="#product-list-php" class="headerlink" title="product_list.php"></a>product_list.php</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;title&quot;</span> id=<span class="string">&quot;title&quot;</span> value=<span class="string">&quot;&lt;?php echo <span class="subst">$title</span> ?&gt;&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/posts/47cdd4d9/res/2020-12-18-13-32-22.png" alt="xss"></p>
+<p>构造请求：<br><a target="_blank" rel="noopener" href="http://192.168.79.128:81/index.php/Admin/Ad/edit?id=111">http://192.168.79.128:81/index.php/Admin/Ad/edit?id=111</a></p>
+<p>验证sql注入：</p>
+<p><img src="/posts/4bb8d7e9/res/2020-12-20-14-58-47.png" alt="2"></p>
 
     </div>
 
@@ -353,14 +356,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/539da8ed/" rel="prev" title="PHP代码审计入门-BlueCMS">
-                  <i class="fa fa-chevron-left"></i> PHP代码审计入门-BlueCMS
+                <a href="/posts/e647593f/" rel="prev" title="PHP代码审计入门-Hsycms">
+                  <i class="fa fa-chevron-left"></i> PHP代码审计入门-Hsycms
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/e647593f/" rel="next" title="PHP代码审计入门-Hsycms">
-                  PHP代码审计入门-Hsycms <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
