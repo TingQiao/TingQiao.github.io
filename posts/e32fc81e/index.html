@@ -23,12 +23,12 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"tingqiao.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="PHP代码审计入门-youdiancms8.0思路App\Lib\ActionApp\Lib\Action目录下为主要功能文件。 SQL注入App\Lib\Action\Admin\AreaAction.class.php由于where(“AreaID&#x3D;{$Parent}”) $Parent由 $_REQUEST[‘id’]传入导致存在sql注入。 123456789101112131415161">
+<meta name="description" content="PHP代码审计入门-youdiancms8.0思路App\Lib\ActionApp\Lib\Action目录下为主要功能文件。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP代码审计入门-youdiancms8.0">
 <meta property="og:url" content="https://tingqiao.github.io/posts/e32fc81e/index.html">
 <meta property="og:site_name" content="TingQiao&#39;s blog">
-<meta property="og:description" content="PHP代码审计入门-youdiancms8.0思路App\Lib\ActionApp\Lib\Action目录下为主要功能文件。 SQL注入App\Lib\Action\Admin\AreaAction.class.php由于where(“AreaID&#x3D;{$Parent}”) $Parent由 $_REQUEST[‘id’]传入导致存在sql注入。 123456789101112131415161">
+<meta property="og:description" content="PHP代码审计入门-youdiancms8.0思路App\Lib\ActionApp\Lib\Action目录下为主要功能文件。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://tingqiao.github.io/posts/e32fc81e/res/2020-12-23-14-47-21.png">
 <meta property="og:image" content="https://tingqiao.github.io/posts/e32fc81e/res/2020-12-23-16-12-14.png">
@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://tingqiao.github.io/posts/e32fc81e/res/2020-12-23-16-23-37.png">
 <meta property="og:image" content="https://tingqiao.github.io/posts/e32fc81e/res/2020-12-23-16-16-30.png">
 <meta property="article:published_time" content="2020-12-23T05:32:43.000Z">
-<meta property="article:modified_time" content="2020-12-23T08:24:00.549Z">
+<meta property="article:modified_time" content="2020-12-23T08:56:06.599Z">
 <meta property="article:author" content="听桥">
 <meta property="article:tag" content="代码审计">
 <meta property="article:tag" content="php">
@@ -285,7 +285,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2020-12-23 13:32:43 / 修改时间：16:24:00" itemprop="dateCreated datePublished" datetime="2020-12-23T13:32:43+08:00">2020-12-23</time>
+      <time title="创建时间：2020-12-23 13:32:43 / 修改时间：16:56:06" itemprop="dateCreated datePublished" datetime="2020-12-23T13:32:43+08:00">2020-12-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -323,6 +323,7 @@
     
     <div class="post-body" itemprop="articleBody">
         <h2 id="PHP代码审计入门-youdiancms8-0"><a href="#PHP代码审计入门-youdiancms8-0" class="headerlink" title="PHP代码审计入门-youdiancms8.0"></a>PHP代码审计入门-youdiancms8.0</h2><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><h4 id="App-Lib-Action"><a href="#App-Lib-Action" class="headerlink" title="App\Lib\Action"></a>App\Lib\Action</h4><p>App\Lib\Action目录下为主要功能文件。</p>
+<a id="more"></a>
 <h3 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h3><h4 id="App-Lib-Action-Admin-AreaAction-class-php"><a href="#App-Lib-Action-Admin-AreaAction-class-php" class="headerlink" title="App\Lib\Action\Admin\AreaAction.class.php"></a>App\Lib\Action\Admin\AreaAction.class.php</h4><p>由于where(“AreaID={$Parent}”) $Parent由 $_REQUEST[‘id’]传入导致存在sql注入。</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">index</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        header(<span class="string">&quot;Content-Type:text/html; charset=utf-8&quot;</span>);</span><br><span class="line">        <span class="variable">$AreaID</span> = <span class="keyword">empty</span>(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;id&#x27;</span>]) ? <span class="number">0</span> : <span class="variable">$_REQUEST</span>[<span class="string">&#x27;id&#x27;</span>];</span><br><span class="line">        <span class="variable">$Parent</span> = <span class="variable">$AreaID</span>; <span class="comment">//当前区域的父级</span></span><br><span class="line">        <span class="variable">$Grand</span> = <span class="number">0</span>; <span class="comment">//当前区域的爷爷</span></span><br><span class="line">        <span class="variable">$m</span> = D(<span class="string">&#x27;Admin/Area&#x27;</span>);</span><br><span class="line">        <span class="variable">$data</span> = <span class="variable">$m</span>-&gt;getArea(<span class="variable">$AreaID</span>);</span><br><span class="line">        <span class="keyword">if</span>(!<span class="keyword">empty</span>(<span class="variable">$data</span>))&#123;</span><br><span class="line">            <span class="variable">$n</span> = count(<span class="variable">$data</span>);</span><br><span class="line">            <span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>; <span class="variable">$i</span>&lt;<span class="variable">$n</span>; <span class="variable">$i</span>++)&#123;</span><br><span class="line">                <span class="variable">$data</span>[<span class="variable">$i</span>][<span class="string">&#x27;ChildCount&#x27;</span>] = <span class="variable">$m</span>-&gt;getChildCount( <span class="variable">$data</span>[<span class="variable">$i</span>][<span class="string">&#x27;AreaID&#x27;</span>] );</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$Parent</span>&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="variable">$Grand</span> = <span class="variable">$m</span>-&gt;where(<span class="string">&quot;AreaID=<span class="subst">&#123;$Parent&#125;</span>&quot;</span>)-&gt;getField(<span class="string">&#x27;Parent&#x27;</span>);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 
