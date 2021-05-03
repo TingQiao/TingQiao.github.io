@@ -197,7 +197,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -239,6 +239,81 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tingqiao.github.io/posts/29747833/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="听桥">
+      <meta itemprop="description" content="听桥的博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TingQiao's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/29747833/" class="post-title-link" itemprop="url">youdiancmsV9.1_文件上传漏洞</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-05-03 15:26:28 / 修改时间：23:15:11" itemprop="dateCreated datePublished" datetime="2021-05-03T15:26:28+08:00">2021-05-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="文件上传漏洞"><a href="#文件上传漏洞" class="headerlink" title="文件上传漏洞"></a>文件上传漏洞</h2><h3 id="App-Lib-Action-AdminBaseAction-class-php"><a href="#App-Lib-Action-AdminBaseAction-class-php" class="headerlink" title="\App\Lib\Action\AdminBaseAction.class.php"></a>\App\Lib\Action\AdminBaseAction.class.php</h3><p>漏洞成因，因为可上传zip文件，并且会将其解压，解压时有限制模板内不能包含php、jsp、aspx等文件，但又排除了common_en.php和common_cn.php文件，所以可以将这两个文件内容更改为webshell上传。(需后台权限)</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">uploadTemplate</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        set_time_limit(<span class="number">0</span>);</span><br><span class="line">        import(<span class="string">&quot;ORG.Net.UploadFile&quot;</span>);</span><br><span class="line">        <span class="variable">$upload</span> = <span class="keyword">new</span> UploadFile();</span><br><span class="line">        <span class="comment">//设置上传文件大小</span></span><br><span class="line">        <span class="variable">$upload</span>-&gt;maxSize  = <span class="variable">$GLOBALS</span>[<span class="string">&#x27;Config&#x27;</span>][<span class="string">&#x27;MAX_UPLOAD_SIZE&#x27;</span>] ; <span class="comment">//最大上传大小</span></span><br><span class="line">        <span class="comment">//设置上传文件类型</span></span><br><span class="line">        <span class="variable">$upload</span>-&gt;allowExts  = <span class="keyword">array</span>(<span class="string">&#x27;zip&#x27;</span>);</span><br><span class="line">        <span class="comment">//设置附件上传目录</span></span><br><span class="line">        <span class="variable">$upload</span>-&gt;savePath =  RUNTIME_PATH; <span class="comment">//模板上传到临时文件夹</span></span><br><span class="line">        <span class="variable">$upload</span>-&gt;saveRule= time;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(!<span class="variable">$upload</span>-&gt;upload()) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;ajaxReturn(<span class="literal">null</span>, <span class="variable">$upload</span>-&gt;getErrorMsg() , <span class="number">0</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="variable">$info</span> =  <span class="variable">$upload</span>-&gt;getUploadFileInfo();</span><br><span class="line">            <span class="comment">//解压模板</span></span><br><span class="line">            import(<span class="string">&#x27;ORG.Util.PclZip&#x27;</span>);</span><br><span class="line">            <span class="variable">$tplDir</span> = (<span class="variable">$_POST</span>[<span class="string">&#x27;ishome&#x27;</span>] == <span class="number">1</span>) ? TMPL_PATH.<span class="string">&#x27;Home/&#x27;</span> : TMPL_PATH.<span class="string">&#x27;Wap/&#x27;</span>;</span><br><span class="line">            <span class="variable">$zipname</span> = RUNTIME_PATH.<span class="variable">$info</span>[<span class="number">0</span>][<span class="string">&#x27;savename&#x27;</span>];</span><br><span class="line">            <span class="variable">$archive</span> = <span class="keyword">new</span> PclZip(<span class="variable">$zipname</span>);</span><br><span class="line">            <span class="keyword">if</span> ((<span class="variable">$list</span> = <span class="variable">$archive</span>-&gt;listContent()) == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">$this</span>-&gt;ajaxReturn(<span class="literal">null</span>, <span class="string">&#x27;安装模板失败!&#x27;</span> , <span class="number">0</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">//判断模板目录是否存在</span></span><br><span class="line">                <span class="variable">$currentDir</span> = <span class="variable">$tplDir</span>.<span class="variable">$list</span>[<span class="number">0</span>][<span class="string">&#x27;filename&#x27;</span>];  <span class="comment">//获取模板文件名</span></span><br><span class="line">                <span class="keyword">if</span>( is_dir(<span class="variable">$currentDir</span>))&#123;</span><br><span class="line">                    <span class="keyword">$this</span>-&gt;ajaxReturn(<span class="literal">null</span>, <span class="string">&#x27;模板目录已经存在!请打开zip压缩包重命名根目录名,再重新安装!&#x27;</span> , <span class="number">0</span>);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">//判断是否是有效模板=====================================</span></span><br><span class="line">                <span class="variable">$count</span> = count(<span class="variable">$list</span>);</span><br><span class="line">                <span class="variable">$IsValid</span> = <span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">for</span>(<span class="variable">$n</span> = <span class="number">0</span>; <span class="variable">$n</span> &lt; <span class="variable">$count</span>; <span class="variable">$n</span>++)&#123;</span><br><span class="line">                    <span class="variable">$filename</span> = strtolower(<span class="variable">$list</span>[<span class="variable">$n</span>][<span class="string">&#x27;filename&#x27;</span>]);</span><br><span class="line">                    <span class="keyword">if</span>( <span class="variable">$list</span>[<span class="variable">$n</span>][<span class="string">&#x27;folder&#x27;</span>] == <span class="literal">true</span> &amp;&amp; stripos(<span class="variable">$filename</span>, <span class="string">&#x27;channel/&#x27;</span>)  )&#123;</span><br><span class="line">                        <span class="variable">$IsValid</span> = <span class="literal">true</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>( !<span class="variable">$IsValid</span> )&#123;</span><br><span class="line">                    <span class="keyword">$this</span>-&gt;ajaxReturn(<span class="literal">null</span>, <span class="string">&#x27;无效模板压缩包!&#x27;</span> , <span class="number">0</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//================================================</span></span><br><span class="line"></span><br><span class="line">                <span class="comment">//模板里的文件名不能包含php、jsp、asp、aspx等危险文件============</span></span><br><span class="line">                <span class="variable">$map</span> = <span class="keyword">array</span>(<span class="string">&#x27;php&#x27;</span>=&gt;<span class="literal">true</span>, <span class="string">&#x27;jsp&#x27;</span>=&gt;<span class="literal">true</span>, <span class="string">&#x27;asp&#x27;</span>=&gt;<span class="literal">true</span>, <span class="string">&#x27;aspx&#x27;</span>=&gt;<span class="literal">true</span>);</span><br><span class="line">                <span class="keyword">for</span>(<span class="variable">$n</span> = <span class="number">0</span>; <span class="variable">$n</span> &lt; <span class="variable">$count</span>; <span class="variable">$n</span>++)&#123;</span><br><span class="line">                    <span class="keyword">if</span>( <span class="variable">$list</span>[<span class="variable">$n</span>][<span class="string">&#x27;folder&#x27;</span>]) <span class="keyword">continue</span>;</span><br><span class="line">                    <span class="variable">$filename</span> = strtolower(<span class="variable">$list</span>[<span class="variable">$n</span>][<span class="string">&#x27;filename&#x27;</span>]);</span><br><span class="line">                    <span class="keyword">if</span>(stripos(<span class="variable">$filename</span>, <span class="string">&#x27;/common_en.php&#x27;</span>) || stripos(<span class="variable">$filename</span>, <span class="string">&#x27;/common_cn.php&#x27;</span>) )&#123;</span><br><span class="line"></span><br><span class="line">                    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                        <span class="variable">$ext</span> = strtolower(yd_file_ext(<span class="variable">$filename</span>));</span><br><span class="line">                        <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$map</span>[<span class="variable">$ext</span>]))&#123;</span><br><span class="line">                            <span class="keyword">$this</span>-&gt;ajaxReturn(<span class="literal">null</span>, <span class="string">&quot;模板不能包含<span class="subst">&#123;$ext&#125;</span>文件&quot;</span> , <span class="number">0</span>);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//==============================================</span></span><br><span class="line">            &#125;</span><br><span class="line">                </span><br><span class="line">            <span class="comment">//解压模板压缩包到模板目录</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="variable">$archive</span>-&gt;extract(PCLZIP_OPT_PATH, <span class="variable">$tplDir</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">                @unlink(<span class="variable">$zipname</span>);</span><br><span class="line">                <span class="keyword">$this</span>-&gt;ajaxReturn(<span class="literal">null</span>, <span class="string">&#x27;安装模板失败!&#x27;</span> , <span class="number">0</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                @unlink(<span class="variable">$zipname</span>);</span><br><span class="line">                <span class="keyword">$this</span>-&gt;checkTemplateLangFile(<span class="variable">$currentDir</span>);</span><br><span class="line">                <span class="keyword">$this</span>-&gt;ajaxReturn(<span class="literal">null</span>, <span class="string">&#x27;安装模板成功!&#x27;</span> , <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="复现"><a href="#复现" class="headerlink" title="复现"></a>复现</h3><blockquote>
+<p>先从已有的模板备份一份出来。</p>
+</blockquote>
+<p><img src="/posts/29747833/2021-05-03-23-11-46.png" alt="1"></p>
+<blockquote>
+<p>再修改其内的common_cn.php或common_en.php文件，即可getshell。</p>
+</blockquote>
+<p>例：<br><img src="/posts/29747833/2021-05-03-23-14-39.png" alt="2"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -974,101 +1049,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/posts/e32fc81e/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://tingqiao.github.io/posts/4bb8d7e9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="听桥">
-      <meta itemprop="description" content="听桥的博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TingQiao's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/4bb8d7e9/" class="post-title-link" itemprop="url">PHP代码审计入门-yxtcmf6.1</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-12-19 20:23:11" itemprop="dateCreated datePublished" datetime="2020-12-19T20:23:11+08:00">2020-12-19</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-21 16:44:42" itemprop="dateModified" datetime="2020-12-21T16:44:42+08:00">2020-12-21</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/web%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">web安全</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/web%E5%AE%89%E5%85%A8/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">代码审计</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/web%E5%AE%89%E5%85%A8/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/php/" itemprop="url" rel="index"><span itemprop="name">php</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="PHP代码审计入门-yxtcmf6-1"><a href="#PHP代码审计入门-yxtcmf6-1" class="headerlink" title="PHP代码审计入门-yxtcmf6.1"></a>PHP代码审计入门-yxtcmf6.1</h2><p>yxtcmf6.1基于thinkphp3.2.3</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/4bb8d7e9/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
