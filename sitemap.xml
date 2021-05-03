@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://tingqiao.github.io/posts/a4e2456b/</loc>
+    
+    <lastmod>2021-05-03</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://tingqiao.github.io/posts/9daba997/</loc>
     
     <lastmod>2021-05-03</lastmod>
@@ -249,6 +256,13 @@
   </url>
   
   <url>
+    <loc>https://tingqiao.github.io/tags/Shiro/</loc>
+    <lastmod>2021-05-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://tingqiao.github.io/tags/fastjson/</loc>
     <lastmod>2021-05-03</lastmod>
     <changefreq>daily</changefreq>
@@ -270,14 +284,14 @@
   </url>
   
   <url>
-    <loc>https://tingqiao.github.io/tags/Python/</loc>
+    <loc>https://tingqiao.github.io/tags/tip/</loc>
     <lastmod>2021-05-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://tingqiao.github.io/tags/tip/</loc>
+    <loc>https://tingqiao.github.io/tags/Python/</loc>
     <lastmod>2021-05-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -328,6 +342,13 @@
   </url>
   
   <url>
+    <loc>https://tingqiao.github.io/categories/web%E5%AE%89%E5%85%A8/exploit/</loc>
+    <lastmod>2021-05-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://tingqiao.github.io/categories/Hexo/</loc>
     <lastmod>2021-05-03</lastmod>
     <changefreq>daily</changefreq>
@@ -342,13 +363,6 @@
   </url>
   
   <url>
-    <loc>https://tingqiao.github.io/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/Python/</loc>
-    <lastmod>2021-05-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://tingqiao.github.io/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2021-05-03</lastmod>
     <changefreq>daily</changefreq>
@@ -356,7 +370,7 @@
   </url>
   
   <url>
-    <loc>https://tingqiao.github.io/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E4%BB%A3%E7%90%86/</loc>
+    <loc>https://tingqiao.github.io/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/Python/</loc>
     <lastmod>2021-05-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -378,6 +392,13 @@
   
   <url>
     <loc>https://tingqiao.github.io/categories/%E5%85%8D%E6%9D%80/</loc>
+    <lastmod>2021-05-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tingqiao.github.io/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E4%BB%A3%E7%90%86/</loc>
     <lastmod>2021-05-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
